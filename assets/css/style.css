@@ -33,6 +33,7 @@ p {
     padding: 5px 10px;
     text-align: center;
 }
+
 form{
     width: 100%;
     text-align: center;
@@ -44,7 +45,7 @@ form{
     letter-spacing: 1.2px;
     margin: 5px;
     border-radius: 8px;
-    font-size: 120%;back
+    font-size: 120%;
     font-weight: 700;
     background-color: grey;
     color: white;
@@ -58,4 +59,12 @@ form{
     background-color: rgba(33, 136, 42, 0.75);
     color: rgba(245, 245, 245);
     margin-top: 25px;
+}
+
+/* Media query: tablor landscape phones (576px and up) */
+@media screen and (min-width: 576px) {
+    main {
+        margin: 50px 5% 75px 20%;
+    }
+
 }

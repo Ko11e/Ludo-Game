@@ -1,0 +1,61 @@
+/* Asterisk wildcard selector to override default styles added by the browser */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background: url(../images/pexels-omaela-apartments-11646952.jpg) no-repeat 86% center/cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    margin: 50px 5% 75px 5%;
+    background-color: rgba(245, 245, 245, .75);
+    box-shadow: 0px 3px 7px 1px #3a3a3a;
+    border-radius: 3%;
+    max-width: 350px;
+}
+
+h1 {
+    text-align: center;
+    text-transform: uppercase;
+    padding: 15px 0 5px 0;
+}
+
+section {
+    padding: 9px 0;
+}
+
+p {
+    padding: 5px 10px;
+    text-align: center;
+}
+form{
+    width: 100%;
+    text-align: center;
+}
+
+.btn-player{
+    width: 45%;
+    height: 45px;
+    letter-spacing: 1.2px;
+    margin: 5px;
+    border-radius: 8px;
+    font-size: 120%;back
+    font-weight: 700;
+    background-color: grey;
+    color: white;
+}
+
+.btn-start {
+    width: 85%;
+    height: 55px;
+    text-transform: uppercase;
+    font-size: 120%;
+    background-color: rgba(33, 136, 42, 0.75);
+    color: rgba(245, 245, 245);
+    margin-top: 25px;
+}

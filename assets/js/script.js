@@ -10,11 +10,45 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
                 let numberPlayers = this.getAttribute("data-type");
                 alert(`You have selected ${numberPlayers}`);
+                enterNames(numberPlayers);
             }
         });
     }
 })
 
+function enterNames(numberPlayers){
+    let div = document.getElementById("enterNames");
+    let playerBtn = document.getElementsByClassName("btn-player");
+    //This row removes all the buttons from the html page.
+    while (playerBtn[0]){
+        playerBtn[0].parentNode.removeChild(playerBtn[0]);
+    }
+    div.innerHTML = `<p> Please enter the name of the players below </p>`
+    if (numberPlayers === "2players"){ 
+        var inputBoxes = `
+        <input type="text" id="player1" name="player1" placeholder="Player 1"><br>
+        <input type="text" id="player2" name="player2" placeholder="Player 2"><br>`
+        
+        div.innerHTML = inputBoxes;
+    } else if(numberPlayers === "3players"){
+        var inputBoxes = `
+        <input type="text" id="player1" name="player1" placeholder="Player 1"><br>
+        <input type="text" id="player2" name="player2" placeholder="Player 2"><br>
+        <input type="text" id="player3" name="player3" placeholder="Player 3"><br>`
+
+        div.innerHTML = inputBoxes;
+    } else if (numberPlayers === "4players"){
+        var inputBoxes = `
+        <input type="text" id="player1" name="player1" placeholder="Player 1"><br>
+        <input type="text" id="player2" name="player2" placeholder="Player 2"><br>
+        <input type="text" id="player3" name="player3" placeholder="Player 3"><br>
+        <input type="text" id="player4" name="player4" placeholder="Player 4"><br>`
+
+        div.innerHTML = inputBoxes;
+    } else {
+        alert ("Error: The number of players does not exist")
+    }
+}
 
 // Get the modal
 var modal = document.getElementById("myModal");

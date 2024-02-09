@@ -35,7 +35,7 @@ section {
     padding: 9px 0;
 }
 
-p {
+.startParagraph {
     padding: 5px 10px;
     text-align: center;
 }

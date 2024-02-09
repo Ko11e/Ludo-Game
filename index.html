@@ -1,44 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Ludo game</title>
 </head>
+
 <body id="bodyIndex">
     <main id="homepage">
         <h1>
             Ludo game
         </h1>
         <section>
-            <p>
-                Welcoming message! here is more information about what to do now and the last step is to click start the game.
+            <p class = "startParagraph">
+                Welcoming message! here is more information about what to do now and the last step is to click start the
+                game.
             </p>
             <button id="RulesBtn">Rules for Ludo</button>
             <!-- The Modal -->
             <div id="myModal" class="modal">
-            <!-- Modal content -->
+                <!-- Modal content -->
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <p>Some text in the Modal..</p>
+                    <h2>Rules for Ludo</h2>
+                    <div>
+                        <p>Ludo consists of a square board with four different colored bases in each corner. The first
+                            colored space outside of each base is the start position. A path leads clockwise around the
+                            board returning to a path with the same color as the base, then to the home column, which
+                            leads to the center of the board.
+                            There are four different colored sets of playing pieces that start off in their matching
+                            bases. Each set consists of 4 playing pieces. The included die is used to govern the
+                            movement of the pieces.
+                        </p>
+                        <h3>Gameplay</h3>
+                        <p>2 to 4 players begin by placing their respective pieces in their bases. Each takes turns
+                            throwing the die, and the player with the highest roll plays first. The players to the left
+                            follow in turn going clockwise. On each player’s turn, the player rolls the die to determine
+                            a move. The goal of the game is to move all four of the player’s pieces clockwise once
+                            around the board, up the home column, and into the home triangle.
+                        </p>
+                        <h3>Movement</h3>
+                        <p>To begin, a player must roll a six to move a piece out of the base and onto the start position.
+                            That piece is then in play. The player cannot make any other moves until at least one piece is
+                            in play.
+                        </p>
+                        <p>If a player has a piece or pieces in play, they can move any one of their pieces 1 to 6 spaces
+                            along the path according to the number they roll.
+                        </p>
+                        <h4>Rules of the 6</h4>
+                        <p>If a six is rolled, the player can choose to either move a piece out of his base onto the start
+                            position or move a piece that is in play.
+                            Anytime a six is rolled, the player gets an extra roll after his move.
+                            If a six is rolled three times in a row, the player loses his turn.
+                            Landing on a shared square
+                        </p>
+                            If a player’s piece lands on an opponent’s piece, the opponent’s piece is sent back to their
+                            base where he must roll a six again in order move it out onto the starting square.
+
+
+                            If a player’s piece (green piece, for example) lands on an opponent’s piece (yellow), the
+                            opponent’s piece is sent back to the base where he must roll a six again in order move it out
+                            onto the starting square.
+                            If a player lands on a space occupied by one of his own pieces, that space becomes blocked. A
+                            blocked space cannot be passed or landed on by an opponent’s piece.
+
+                            If a player (blue piece, for example) lands on a space occupied by one of his own pieces, that
+                            space becomes blocked. A blocked space cannot be passed or landed on by an opponent’s piece
+                            (red).
+                            Winning the Game
+                            When a player’s piece has reached the home column of its own color, the piece continues its
+                            moves toward the center to its home triangle. When a player’s die roll lands its piece on the
+                            home triangle, that piece has completed its journey. A piece can only be moved to the home
+                            triangle with an exact roll.
+
+                            The first player to have all four of his pieces finish their journeys wins. The remaining
+                            players continue the game to determine the runner-ups.
+                        </p>
+                    </div>
                 </div>
             </div>
 
             <!-- From to the game -->
             <div id="players-form">
-                <button id="players2" class="btn-player">2  Players</button>
+                <button id="players2" class="btn-player">2 Players</button>
                 <br>
-                <button id="players3" class="btn-player">3  Players</button>
+                <button id="players3" class="btn-player">3 Players</button>
                 <br>
-                <button id="players4" class="btn-player">4  Players</button>
-                <p id="enterNames"></p>
+                <button id="players4" class="btn-player">4 Players</button>
+                <p id="enterNames" class = "startParagraph"></p>
                 <a href="playboard.html">
                     <button id="runGame" class="btn-start"> Start the game</button>
                 </a>
             </div>
         </section>
-    </main>    
+    </main>
     <script src="assets/js/script.js"></script>
 </body>
+
 </html>

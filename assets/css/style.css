@@ -123,10 +123,12 @@ footer{
     background-color: #fefefe;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    position: absolute;
     bottom: 0;
     min-width: 100%;
-    height: 36px;
+    height: 45px;
+    padding: 0 30%;
 }
 
 /* Media query: tablor landscape phones (576px and up) */

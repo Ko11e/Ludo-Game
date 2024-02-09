@@ -6,7 +6,13 @@ document.addEventListener("DOMContentLoaded", function() {
     for (let button of buttons) {
         button.addEventListener("click", function() {
             if (this.getAttribute("data-type") === "startGame") {
-                alert("You have not yet selected the number of players");
+                let selectedPlayers = document.getElementsByTagName("input")
+                if (selectedPlayers.length < 1){
+                    alert("You have not yet selected the number of players");
+                } else {
+                    window.open("theboard.html")
+                }
+                
             } else {
                 let numberPlayers = this.getAttribute("data-type");
                 alert(`You have selected ${numberPlayers}`);
@@ -30,14 +36,14 @@ function enterNames(numberPlayers){
     if (numberPlayers === "2players"){ 
         var inputBoxes = `
         <p> Please enter the name of the players below </p>
-        <input type="text" id="player1" name="player1" placeholder="Player 1"><br>
+        <input type="text" id="player1" name="player1" placeholder="Player 1" autofocus><br>
         <input type="text" id="player2" name="player2" placeholder="Player 2"><br>`
         
         div.innerHTML = inputBoxes;
     } else if(numberPlayers === "3players"){
         var inputBoxes = `
         <p> Please enter the name of the players below </p>
-        <input type="text" id="player1" name="player1" placeholder="Player 1"><br>
+        <input type="text" id="player1" name="player1" placeholder="Player 1" autofocus><br>
         <input type="text" id="player2" name="player2" placeholder="Player 2"><br>
         <input type="text" id="player3" name="player3" placeholder="Player 3"><br>`
 
@@ -45,7 +51,7 @@ function enterNames(numberPlayers){
     } else if (numberPlayers === "4players"){
         var inputBoxes = `
         <p> Please enter the name of the players below </p>
-        <input type="text" id="player1" name="player1" placeholder="Player 1"><br>
+        <input type="text" id="player1" name="player1" placeholder="Player 1" autofocus><br>
         <input type="text" id="player2" name="player2" placeholder="Player 2"><br>
         <input type="text" id="player3" name="player3" placeholder="Player 3"><br>
         <input type="text" id="player4" name="player4" placeholder="Player 4"><br>`

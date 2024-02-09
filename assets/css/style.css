@@ -136,7 +136,7 @@ main#theBoard {
 }
 
 .bas{
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     width: 7%;
 }
 
@@ -144,6 +144,28 @@ main#theBoard {
     content: "";
     display: block;
     padding-bottom: 100%;
+}
+
+.walkway, .yellowbas, .greenbas,
+.bluebas, .redbas {
+    border: 1px solid black;
+    border-radius: 40%;
+}
+
+.yellowbas{
+    background: #EFEF33;
+}
+
+.greenbas{
+    background: #02AF32;
+}
+
+.bluebas{
+    background: #3032FF ;
+}
+
+.redbas{
+    background: #E23232;
 }
 
 footer{
@@ -161,7 +183,6 @@ footer{
 /* Media query: tablor landscape phones (576px and up) */
 @media screen and (min-width: 576px) {
     .bas{
-        border: 1px solid black;
         width: 5%;
     }
 }
@@ -169,7 +190,6 @@ footer{
 /* Media query: tablor landscape phones (768px and up) */
 @media screen and (min-width: 768px) {
     .bas{
-        border: 1px solid black;
         width: 3%;
     }
 }

@@ -5,10 +5,15 @@
     box-sizing: border-box;
 }
 body{
-    background: url(../images/pexels-omaela-apartments-11646952.jpg) no-repeat 86% center/cover;
+
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+#bodyIndex {
+    background: url(../images/pexels-omaela-apartments-11646952.jpg) no-repeat 86% center/cover;
 }
 
 main {
@@ -16,7 +21,8 @@ main {
     background-color: rgba(245, 245, 245, .75);
     box-shadow: 0px 3px 7px 1px #3a3a3a;
     border-radius: 3%;
-    max-width: 350px;
+    max-width: 450px;
+    width: 95%;
 }
 
 h1 {
@@ -34,7 +40,15 @@ p {
     text-align: center;
 }
 
-form{
+#RulesBtn {
+    border: 1px dotted #3a3a3a;
+    width: 50%;
+    position: relative;
+    transform: translateX(50%);
+    margin: 5% 0;
+}
+
+#players-form{
     width: 100%;
     text-align: center;
 }
@@ -61,10 +75,52 @@ form{
     margin-top: 25px;
 }
 
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 75%; /* Could be more or less, depending on screen size */
+    max-width: 735px;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
 /* Media query: tablor landscape phones (576px and up) */
 @media screen and (min-width: 576px) {
-    main {
-        margin: 50px 5% 75px 20%;
-    }
+
+
+}
+
+/* Media query: tablor landscape phones (768px and up) */
+@media screen and (min-width: 768px) {
+
 
 }

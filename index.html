@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Document</title>
+    <title>Ludo game</title>
 </head>
-<body>
+<body id="bodyIndex">
     <main id="homepage">
         <h1>
             Ludo game
@@ -15,17 +15,28 @@
             <p>
                 Welcoming message! here is more information about what to do now and the last step is to click start the game.
             </p>
-            <p><a href="">Rulse to Ludo</a></p>
-            <form id="players-form" action="gameboard.html" method="post">
+            <button id="RulesBtn">Rules for Ludo</button>
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+            <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Some text in the Modal..</p>
+                </div>
+            </div>
+
+            <!-- From to the game -->
+            <div id="players-form">
                 <button id="players2" class="btn-player">2  Players</button>
                 <br>
                 <button id="players3" class="btn-player">3  Players</button>
                 <br>
                 <button id="players4" class="btn-player">4  Players</button>
                 <p id="enterNames"></p>
-                <button id="runGame" class="btn-start"> Start the game</button>
-            </form>
-
+                <a href="playboard.html">
+                    <button id="runGame" class="btn-start"> Start the game</button>
+                </a>
+            </div>
         </section>
     </main>    
     <script src="assets/js/script.js"></script>

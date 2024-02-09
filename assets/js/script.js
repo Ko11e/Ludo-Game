@@ -15,7 +15,10 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 })
-
+/**
+ * Remove the buttons to enter the number of players for the game and enters the number of textboxes so the players can enter there names.
+ * @param {*} numberPlayers
+ */
 function enterNames(numberPlayers){
     let div = document.getElementById("enterNames");
     let playerBtn = document.getElementsByClassName("btn-player");
@@ -23,15 +26,17 @@ function enterNames(numberPlayers){
     while (playerBtn[0]){
         playerBtn[0].parentNode.removeChild(playerBtn[0]);
     }
-    div.innerHTML = `<p> Please enter the name of the players below </p>`
+
     if (numberPlayers === "2players"){ 
         var inputBoxes = `
+        <p> Please enter the name of the players below </p>
         <input type="text" id="player1" name="player1" placeholder="Player 1"><br>
         <input type="text" id="player2" name="player2" placeholder="Player 2"><br>`
         
         div.innerHTML = inputBoxes;
     } else if(numberPlayers === "3players"){
         var inputBoxes = `
+        <p> Please enter the name of the players below </p>
         <input type="text" id="player1" name="player1" placeholder="Player 1"><br>
         <input type="text" id="player2" name="player2" placeholder="Player 2"><br>
         <input type="text" id="player3" name="player3" placeholder="Player 3"><br>`
@@ -39,6 +44,7 @@ function enterNames(numberPlayers){
         div.innerHTML = inputBoxes;
     } else if (numberPlayers === "4players"){
         var inputBoxes = `
+        <p> Please enter the name of the players below </p>
         <input type="text" id="player1" name="player1" placeholder="Player 1"><br>
         <input type="text" id="player2" name="player2" placeholder="Player 2"><br>
         <input type="text" id="player3" name="player3" placeholder="Player 3"><br>

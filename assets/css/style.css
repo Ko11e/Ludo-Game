@@ -113,6 +113,12 @@ section {
     cursor: pointer;
   }
 
+  input[type=text] {
+    margin: 10px 0;
+    padding: 5px;
+    width: 50%;
+  }
+
 /* Media query: tablor landscape phones (576px and up) */
 @media screen and (min-width: 576px) {
 

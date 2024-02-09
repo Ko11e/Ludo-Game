@@ -13,7 +13,7 @@ body{
 }
 
 #bodyIndex {
-    background: url(../images/pexels-omaela-apartments-11646952.jpg) no-repeat 86% center/cover;
+    background: url(../images/Ludo-home-background.webp) no-repeat 86% center/cover;
 }
 
 main {
@@ -118,6 +118,16 @@ section {
     padding: 5px;
     width: 50%;
   }
+
+footer{
+    background-color: #fefefe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 0;
+    min-width: 100%;
+    height: 36px;
+}
 
 /* Media query: tablor landscape phones (576px and up) */
 @media screen and (min-width: 576px) {

@@ -5,7 +5,6 @@
     box-sizing: border-box;
 }
 body{
-
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -16,7 +15,7 @@ body{
     background: url(../images/Ludo-home-background.webp) no-repeat 86% center/cover;
 }
 
-main {
+main#homepage {
     margin: 50px 5% 75px 5%;
     background-color: rgba(245, 245, 245, .75);
     box-shadow: 0px 3px 7px 1px #3a3a3a;
@@ -75,49 +74,77 @@ section {
     margin-top: 25px;
 }
 
+/* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
   
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 75%; /* Could be more or less, depending on screen size */
-    max-width: 735px;
-  }
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 75%; /* Could be more or less, depending on screen size */
+  max-width: 735px;
+}
+ 
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
   
-  /* The Close Button */
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-  input[type=text] {
-    margin: 10px 0;
-    padding: 5px;
-    width: 50%;
-  }
+input[type=text] {
+  margin: 10px 0;
+  padding: 5px;
+  width: 50%;
+}
+
+/* Page TheBoard */
+main#theBoard {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.bas{
+    border: 1px solid black;
+    width: 7%;
+}
+
+.bas:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
 
 footer{
     background-color: #fefefe;
@@ -133,12 +160,16 @@ footer{
 
 /* Media query: tablor landscape phones (576px and up) */
 @media screen and (min-width: 576px) {
-
-
+    .bas{
+        border: 1px solid black;
+        width: 5%;
+    }
 }
 
 /* Media query: tablor landscape phones (768px and up) */
 @media screen and (min-width: 768px) {
-
-
+    .bas{
+        border: 1px solid black;
+        width: 3%;
+    }
 }

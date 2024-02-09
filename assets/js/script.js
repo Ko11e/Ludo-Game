@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 
             } else {
                 let numberPlayers = this.getAttribute("data-type");
-                alert(`You have selected ${numberPlayers}`);
+                //alert(`You have selected ${numberPlayers}`);
                 enterNames(numberPlayers);
             }
         });

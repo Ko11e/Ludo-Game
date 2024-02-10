@@ -10,10 +10,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (selectedPlayers.length < 1){
                     alert("You have not yet selected the number of players");
                 } else {
-                    window.open("theboard.html")
+                    open("theboard.html")
                 }
                 
-            } else {
+            } else if (this.getAttribute("data-type") !== "rules") {
                 let numberPlayers = this.getAttribute("data-type");
                 //alert(`You have selected ${numberPlayers}`);
                 enterNames(numberPlayers);

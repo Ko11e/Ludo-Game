@@ -120,11 +120,14 @@ input[type=text] {
 }
 
 /* Page TheBoard */
-main#theBoard {
-    margin-top: 100px;
+#boardandpalyers {
+    margin: 5% 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    width: 100%;
+}
+
+#theBoard {
     width: 100%;
 }
 
@@ -136,8 +139,10 @@ main#theBoard {
 }
 
 .bas{
-    /*border: 1px solid black;*/
     width: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .bas:after {
@@ -146,10 +151,14 @@ main#theBoard {
     padding-bottom: 100%;
 }
 
+img {
+    width: 90%;
+}
+
 .walkway, .yellowbas, .greenbas,
 .bluebas, .redbas {
-    border: 1px solid black;
-    border-radius: 40%;
+    border: 1.5px solid black;
+    border-radius: 20%;
 }
 
 .yellowbas{
@@ -168,12 +177,22 @@ main#theBoard {
     background: #E23232;
 }
 
+#players {
+    /*display: flex;*/
+    /*justify-content: space-between;*/
+}
+
+h2 {
+    text-transform: uppercase;
+    font-size: 80%
+}
+
 footer{
     background-color: #fefefe;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     min-width: 100%;
     height: 45px;
@@ -182,6 +201,7 @@ footer{
 
 /* Media query: tablor landscape phones (576px and up) */
 @media screen and (min-width: 576px) {
+
     .bas{
         width: 5%;
     }
@@ -189,6 +209,12 @@ footer{
 
 /* Media query: tablor landscape phones (768px and up) */
 @media screen and (min-width: 768px) {
+
+    .row {
+        justify-content: flex-start;
+        padding: 0 50px;
+    }
+
     .bas{
         width: 3%;
     }

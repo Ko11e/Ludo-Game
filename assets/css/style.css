@@ -9,6 +9,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: #dadfeda1;
 }
 
 #bodyIndex {
@@ -124,11 +125,14 @@ input[type=text] {
     margin: 5% 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%;
 }
 
 #theBoard {
     width: 100%;
+    max-width: 375px;
+    background-color: white;
 }
 
 .row {
@@ -174,12 +178,18 @@ input[type=text] {
     background: #E2323280;
 }
 
-h2 {
-    text-transform: uppercase;
-    font-size: 80%
-}
 
 #players {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#players h2 {
+    text-transform: uppercase;
+}
+
+#players > div:first-of-type {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -216,6 +226,10 @@ img {
     justify-content: space-evenly;
 }
 
+#markerP1{
+    border: 2px solid black;
+}
+
 #diceDisplay{
     display: flex;
     width: 100%;
@@ -226,6 +240,8 @@ img {
 
 #dice {
     font-size: 300%;
+    border: none;
+    background-color: inherit;
 }
 
 footer{
@@ -242,21 +258,47 @@ footer{
 
 /* Media query: tablor landscape phones (576px and up) */
 @media screen and (min-width: 576px) {
-
-    .bas{
-        width: 5%;
+    #boardandpalyers {
+        margin: 3% 0;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 98%;
     }
+
+    #theBoard {
+        width: 100%;
+        max-width: none;
+    }
+
+    #pawns > div {
+        flex-basis: 70%;
+        margin: 10% 0;
+    }
+
+    #players {
+        width: 30%;
+    }
+    
 }
 
 /* Media query: tablor landscape phones (768px and up) */
 @media screen and (min-width: 768px) {
+    #boardandpalyers {
+        margin: 1% 0;
+    }
+
+    #theBoard {
+        width: 75%;
+        max-width: 790px;
+    }
+
+    #players {
+        width: 25%;
+    }
 
     .row {
         justify-content: flex-start;
         padding: 0 50px;
     }
 
-    .bas{
-        width: 3%;
-    }
 }

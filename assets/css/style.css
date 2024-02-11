@@ -151,9 +151,6 @@ input[type=text] {
     padding-bottom: 100%;
 }
 
-img {
-    width: 90%;
-}
 
 .walkway, .yellowbas, .greenbas,
 .bluebas, .redbas {
@@ -162,29 +159,73 @@ img {
 }
 
 .yellowbas{
-    background: #EFEF33;
+    background: #efef3383;
 }
 
 .greenbas{
-    background: #02AF32;
+    background: #02af3380;
 }
 
 .bluebas{
-    background: #3032FF ;
+    background: #3033ff80 ;
 }
 
 .redbas{
-    background: #E23232;
-}
-
-#players {
-    /*display: flex;*/
-    /*justify-content: space-between;*/
+    background: #E2323280;
 }
 
 h2 {
     text-transform: uppercase;
     font-size: 80%
+}
+
+#players {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pawnbas{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pawnbas:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+
+img {
+    width: 90%;
+}
+
+#pawns {
+    display: flex;
+    flex-wrap: wrap;
+    width: 60%;
+}
+
+#pawns > div {
+    display: flex;
+    flex-basis: 45%;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#diceDisplay{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 10px 0;
+}
+
+#dice {
+    font-size: 300%;
 }
 
 footer{

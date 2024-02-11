@@ -4,7 +4,8 @@
     margin: 0;
     box-sizing: border-box;
 }
-body{
+
+body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -48,12 +49,12 @@ section {
     margin: 5% 0;
 }
 
-#players-form{
+#players-form {
     width: 100%;
     text-align: center;
 }
 
-.btn-player{
+.btn-player {
     width: 45%;
     height: 45px;
     letter-spacing: 1.2px;
@@ -77,47 +78,57 @@ section {
 
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
 }
-  
+
 /* Modal Content/Box */
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 75%; /* Could be more or less, depending on screen size */
-  max-width: 735px;
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 75%;
+    /* Could be more or less, depending on screen size */
+    max-width: 735px;
 }
- 
+
 /* The Close Button */
 .close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
-  
+
 .close:hover,
 .close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 input[type=text] {
-  margin: 10px 0;
-  padding: 5px;
-  width: 50%;
+    margin: 10px 0;
+    padding: 5px;
+    width: 50%;
 }
 
 /* Page TheBoard */
@@ -142,7 +153,7 @@ input[type=text] {
     width: 100%;
 }
 
-.bas{
+.bas {
     width: 7%;
     display: flex;
     justify-content: center;
@@ -156,28 +167,35 @@ input[type=text] {
 }
 
 
-.walkway, .yellowbas, .greenbas,
-.bluebas, .redbas {
+.walkway,
+.yellowbas,
+.greenbas,
+.bluebas,
+.redbas {
     border: 1.5px solid black;
     border-radius: 20%;
 }
 
-.yellowbas{
+.yellowbas {
     background: #efef3383;
 }
 
-.greenbas{
+.greenbas {
     background: #02af3380;
 }
 
-.bluebas{
-    background: #3033ff80 ;
+.bluebas {
+    background: #3033ff80;
 }
 
-.redbas{
+.redbas {
     background: #E2323280;
 }
 
+#nest {
+    background-image: conic-gradient(#efef3383 45deg, #3033ff80 45deg, #3033ff80 135deg, #E2323280 135deg, 
+    #E2323280 225deg, #02af3380 225deg, #02af3380 315deg, #efef3383 315deg);
+}
 
 #players {
     display: flex;
@@ -189,13 +207,13 @@ input[type=text] {
     text-transform: uppercase;
 }
 
-#players > div:first-of-type {
+#players>div:first-of-type {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.pawnbas{
+.pawnbas {
     width: 30%;
     display: flex;
     justify-content: center;
@@ -218,7 +236,7 @@ img {
     width: 60%;
 }
 
-#pawns > div {
+#pawns>div {
     display: flex;
     flex-basis: 45%;
     flex-grow: 1;
@@ -226,11 +244,11 @@ img {
     justify-content: space-evenly;
 }
 
-#markerP1{
+#markerP1 {
     border: 2px solid black;
 }
 
-#diceDisplay{
+#diceDisplay {
     display: flex;
     width: 100%;
     justify-content: space-evenly;
@@ -244,7 +262,11 @@ img {
     background-color: inherit;
 }
 
-footer{
+.walkway:hover {
+    background-color: #92929277;
+}
+
+footer {
     background-color: #fefefe;
     display: flex;
     align-items: center;
@@ -270,15 +292,15 @@ footer{
         max-width: none;
     }
 
-    #pawns > div {
+    #pawns>div {
         flex-basis: 70%;
         margin: 10% 0;
     }
 
     #players {
-        width: 30%;
+        width: 25%;
     }
-    
+
 }
 
 /* Media query: tablor landscape phones (768px and up) */
@@ -288,16 +310,12 @@ footer{
     }
 
     #theBoard {
-        width: 75%;
+        width: 80%;
         max-width: 790px;
     }
 
-    #players {
-        width: 25%;
-    }
-
     .row {
-        justify-content: flex-start;
+        justify-content: center;
         padding: 0 50px;
     }
 

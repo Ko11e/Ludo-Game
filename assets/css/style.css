@@ -13,6 +13,14 @@ body {
     background: #dadfeda1;
 }
 
+a {
+    color: black;
+    text-decoration: none;
+    font-size: 150%;
+}
+
+
+/* Home page */
 #bodyIndex {
     background: url(../images/Ludo-home-background.webp) no-repeat 86% center/cover;
 }
@@ -166,7 +174,6 @@ input[type=text] {
     padding-bottom: 100%;
 }
 
-
 .walkway,
 .yellowbas,
 .greenbas,
@@ -174,6 +181,10 @@ input[type=text] {
 .redbas {
     border: 1.5px solid black;
     border-radius: 20%;
+}
+
+.walkway:hover {
+    background-color: #92929277;
 }
 
 .yellowbas {
@@ -197,6 +208,7 @@ input[type=text] {
     #E2323280 225deg, #02af3380 225deg, #02af3380 315deg, #efef3383 315deg);
 }
 
+/* Section Players */
 #players {
     display: flex;
     flex-direction: column;
@@ -205,6 +217,7 @@ input[type=text] {
 
 #players h2 {
     text-transform: uppercase;
+    font-size: 150%;
 }
 
 #players>div:first-of-type {
@@ -260,10 +273,6 @@ img {
     font-size: 300%;
     border: none;
     background-color: inherit;
-}
-
-.walkway:hover {
-    background-color: #92929277;
 }
 
 footer {

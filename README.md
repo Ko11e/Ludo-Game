@@ -1,8 +1,7 @@
-# Love Running
+# Ludo Game
 
 
 ## Features 
-
 ### Existing Features
 
 #### Home page/Start page

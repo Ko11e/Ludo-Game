@@ -10,17 +10,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (selectedPlayers.length < 1){
                     alert("You have not yet selected the number of players");
                 } else {
-                    open("theboard.html")
+                    const playersNames = getNames();
+                    open("theboard.html"/*, "_top"*/)
                 }
                 
             } else if (this.getAttribute("data-type") !== "rules") {
                 let numberPlayers = this.getAttribute("data-type");
-                //alert(`You have selected ${numberPlayers}`);
                 enterNames(numberPlayers);
             }
         });
     }
 })
+
 /**
  * Remove the buttons to enter the number of players for the game and enters the number of textboxes so the players can enter there names.
  * @param {*} numberPlayers
@@ -60,6 +61,21 @@ function enterNames(numberPlayers){
     } else {
         alert ("Error: The number of players does not exist")
     }
+}
+
+/**
+ * Take all the input values and retuns them in a array.
+ * @returns List with strings
+ */
+function getNames (){
+    let names = document.getElementsByTagName("input");
+    let nameList = [];
+
+    for (let i = 0; i < names.length; i++){
+        nameList.push(names[i].value);
+    }
+    
+    return nameList
 }
 
 // Get the modal

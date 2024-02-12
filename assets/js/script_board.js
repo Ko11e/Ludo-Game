@@ -1,2 +1,24 @@
-import { playersNamesList } from './script.js' // Imports the names of the players
+let NameofPlayers = ['Emmelie', 'Fredrik', 'Dave' ]
 
+//Function
+
+function createBoard(Listplayers) {
+    
+
+}
+
+function startTheGame(){
+
+}
+
+function firstTurn(){
+
+}
+
+function rollDice() {
+
+}
+
+function movePawns(){
+
+}

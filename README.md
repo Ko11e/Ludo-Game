@@ -1,11 +1,12 @@
 # Ludo Game
-
+Ludo is a boardgame the you now with this websitw can play online.
 
 ## Features 
 ### Existing Features
+The site is responsive to all screens and can also be played on a mobile in landscape view but is not optimal.
 
 #### Home page/Start page
-
+-
 
 #### Board
 
@@ -21,6 +22,9 @@
 ##### Board game
 
 ### Features Left to Implement
+- The number of Players the is choosen in the index page will change the out put of the game bord. As it is now the pawn from the non selected player gets remove from the field.
+- if not all the 4 players are selected the user the select if the remaining player sould be played bye the javascript.
+- The user call click and drag the pawn instead of just clicking.
 
 ## Design
 

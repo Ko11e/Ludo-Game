@@ -23,6 +23,37 @@
 
 ### Features Left to Implement
 
+## Design
+
+### Wireframe
+
+### Color/Images
+
+
+## Technologies
+
+- **HTML** <br>
+ The structure of the Website was developed using HTML as the main language.
+- **CSS** <br>
+The website's styling was achieved through the use  CSS, which is located in an external file.
+- **Javascript** <br>
+The website was made interactive by using Javascript. 
+- **Gitpod** <br>
+The website was created by using Gitpod.
+- **GitHub** <br>
+The source code is hosted on GitHub and deployed using Git Pages.
+- **Git** <br>
+During the development of the website, Git was utilized to commit and push code.
+- **Font Awesome** <br>
+Icons from https://fontawesome.com/ are used as Home and restart icons the footer.
+- **Covertio** <br>
+To convert some images from jpg or png to web format, we used [Convertio](https://convertio.co/jpg-webp/).
+- **Tinyjpg** <br>
+Used https://tinyjpg.com/ to compress the size of the images.
+- **[Favicon.io](https://favicon.io/favicon-converter/)** <br>
+Favicon files were made at 
+- **[balsamiq](https://balsamiq.com/wireframes/desktop/#)** <br>
+Used balsamiq to create the wireframes.
 
 ## Testing 
 

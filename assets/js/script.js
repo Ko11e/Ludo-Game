@@ -9,9 +9,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 let selectedPlayers = document.getElementsByTagName("input")
                 if (selectedPlayers.length < 1){
                     alert("You have not yet selected the number of players");
-                } else {
-                    const playersNames = getNames();
-                    open("theboard.html"/*, "_top"*/)
                 }
                 
             } else if (this.getAttribute("data-type") !== "rules") {
@@ -28,34 +25,41 @@ document.addEventListener("DOMContentLoaded", function() {
  */
 function enterNames(numberPlayers){
     let div = document.getElementById("enterNames");
-    let playerBtn = document.getElementsByClassName("btn-player");
-    //This row removes all the buttons from the html page.
-    while (playerBtn[0]){
-        playerBtn[0].parentNode.removeChild(playerBtn[0]);
-    }
+    let playerBtn = document.getElementById("players-form");
+    playerBtn.remove();
 
     if (numberPlayers === "2players"){ 
         var inputBoxes = `
+        <form action='theboard.html' method='get' id='players-form'>
         <p> Please enter the name of the players below </p>
         <input type="text" id="player1" name="player1" placeholder="Player 1" autofocus><br>
-        <input type="text" id="player2" name="player2" placeholder="Player 2"><br>`
+        <input type="text" id="player2" name="player2" placeholder="Player 2"><br>
+        <button data-type="startGame"  id="runGame" class="btn-start"> Start the game</button>
+        </form>`
         
         div.innerHTML = inputBoxes;
     } else if(numberPlayers === "3players"){
         var inputBoxes = `
-        <p> Please enter the name of the players below </p>
-        <input type="text" id="player1" name="player1" placeholder="Player 1" autofocus><br>
-        <input type="text" id="player2" name="player2" placeholder="Player 2"><br>
-        <input type="text" id="player3" name="player3" placeholder="Player 3"><br>`
-
-        div.innerHTML = inputBoxes;
-    } else if (numberPlayers === "4players"){
-        var inputBoxes = `
+        <form action='theboard.html' method='get' id='players-form'>
         <p> Please enter the name of the players below </p>
         <input type="text" id="player1" name="player1" placeholder="Player 1" autofocus><br>
         <input type="text" id="player2" name="player2" placeholder="Player 2"><br>
         <input type="text" id="player3" name="player3" placeholder="Player 3"><br>
-        <input type="text" id="player4" name="player4" placeholder="Player 4"><br>`
+        <button data-type="startGame"  id="runGame" class="btn-start"> Start the game</button>
+        </form>`
+
+        div.innerHTML = inputBoxes;
+    } else if (numberPlayers === "4players"){
+        var inputBoxes = `
+        <form action='theboard.html' method='get' id='players-form'>
+        <p> Please enter the name of the players below </p>
+        <input type="text" id="player1" name="player1" placeholder="Player 1" autofocus><br>
+        <input type="text" id="player2" name="player2" placeholder="Player 2"><br>
+        <input type="text" id="player3" name="player3" placeholder="Player 3"><br>
+        <input type="text" id="player4" name="player4" placeholder="Player 4"><br>
+        <button data-type="startGame"  id="runGame" class="btn-start"> Start the game</button>
+        </form>`
+        
 
         div.innerHTML = inputBoxes;
     } else {
@@ -63,20 +67,6 @@ function enterNames(numberPlayers){
     }
 }
 
-/**
- * Take all the input values and retuns them in a array.
- * @returns List with strings
- */
-function getNames (){
-    let names = document.getElementsByTagName("input");
-    let nameList = [];
-
-    for (let i = 0; i < names.length; i++){
-        nameList.push(names[i].value);
-    }
-    
-    return nameList
-}
 
 // Get the modal
 var modal = document.getElementById("myModal");

@@ -257,10 +257,6 @@ img {
     justify-content: space-evenly;
 }
 
-#markerP1D {
-    border: 2px solid black;
-}
-
 #diceDisplay {
     display: flex;
     width: 100%;

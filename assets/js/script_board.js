@@ -1,18 +1,22 @@
 let NameofPlayers = getPlayerNameFromURL();
 const Playerstat = createBoard (NameofPlayers);
-firstTurn (Playerstat);
-
+rounds(Playerstat);
 
 //Functions
 function main(){
     let NameofPlayers = getPlayerNameFromURL();
     const Playerstat = createBoard (NameofPlayers);
+    firstTurn (Playerstat);
+
+    
+
+
 
 
 }
 
 /**
- * 
+ * Gets the Names given in the first pages and give a list of the names
  * @returns A list with the playersname.
  */
 function getPlayerNameFromURL() {
@@ -87,7 +91,7 @@ function createplayerobject(array){
     for (let i = 0; i < listLenght; i++) {
         if (listLenght ===2){
             if (i===1){
-                let nameText = document.getElementById(`playerText${i+1}`);
+                let nameText = document.getElementById(`playerText${i+2}`);
                 nameText.innerHTML = array[i];
                 let stat = {Name: array[i], Nest: 0, Pathway: pathways[i+1], Pawn: colors[i+1]};
                 statPlayers.push(stat);
@@ -118,13 +122,12 @@ function createplayerobject(array){
  */
 async function firstTurn(ArrayPlayers) {
     for (let i=0; i<ArrayPlayers.length; i++){
-        let activeplayer = document.getElementById(`markerP${i+1}D`);
-        activeplayer.style.border = '2px solid black'
+        let activeplayer = document.getElementsByClassName('activemarker')[i];
+        activeplayer.style.border = '2px solid black';
 
         let pathWay = ArrayPlayers[i].Pathway;
         let pawns = ArrayPlayers[i].Pawn;
         let rolls = 0;
-        console.log(pawns);
         while (rolls !== 3){
             await waitForDieToBeRolled('dice');
             dice = rollDice();
@@ -150,7 +153,45 @@ async function firstTurn(ArrayPlayers) {
 
         
         }
-        moveMarker(i+1);
+        activeplayer.style.removeProperty('border');
+    }
+}
+
+async function rounds(ArrayPlayers){
+    let nest = 0;
+
+    while (nest !==4){
+        for (let i=0; i<ArrayPlayers.length; i++){
+            let activeplayer = document.getElementsByClassName('activemarker')[i];
+            activeplayer.style.border = '2px solid black';
+            
+            let pathWay = ArrayPlayers[i].Pathway;
+            let pawns = ArrayPlayers[i].Pawn;
+            let roll = 2;
+            
+            await waitForDieToBeRolled('dice');
+            dice = rollDice();
+            
+            while (dice === 6){
+                const clickedPawnId = await waitForSelectecPawn([pawns[0][0], pawns[1][0], pawns[2][0], pawns[3][0]]);
+                movePawns(pathWay, pawns, clickedPawnId, dice);
+                console.log(clickedPawnId);
+                roll -= 1;
+                if (roll === 0){
+                    break;
+                }
+                await waitForDieToBeRolled('dice');
+                dice = rollDice();
+                const PawnId = await waitForSelectecPawn([pawns[0][0], pawns[1][0], pawns[2][0], pawns[3][0]]);
+                movePawns(pathWay, pawns, PawnId, dice);
+            }
+            const PawnId1 = await waitForSelectecPawn([pawns[0][0], pawns[1][0], pawns[2][0], pawns[3][0]]);
+            movePawns(pathWay, pawns, PawnId1, dice);
+            console.log(PawnId1);
+
+            activeplayer.style.removeProperty('border')
+            
+        }
     }
 }
 
@@ -161,7 +202,28 @@ function rollDice() {
    return number+1;
 }
 
-function movePawns() {
+async function movePawns(pathWay, pawns, PawnId, dice) {
+    for (let i = 0; i < 4; i++){
+        if (pawns[i][0] === PawnId){
+            let pathWaynr = pathWay.indexOf[pawns[i][1]];
+            /*if (pathWaynr+dice > pathWay.length){
+                let stop = document.getElementById(pathWay[pathWaynr+dice]);
+            }*/
+            let pawn = document.getElementById(PawnId);
+            let stop = document.getElementById(pathWay[pathWaynr+dice]);
+            pawns[i][1] = stop;
+            console.log(pawn)
+            stop.append(pawn);
+        } else if(dice === 1 || dice === 6){
+            let pawn = document.getElementById(PawnId);
+            let stop = document.getElementById(pathWay[dice-1]);
+            pawns[0][1] = stop;
+            stop.append(pawn);
+            console.log(pawns);
+        } else {
+            alert('You can only select a pawn that is on the fields');
+        }
+    }
 
 }
 
@@ -171,19 +233,21 @@ function dicesides (){
    return dice;
 }
 
-function moveMarker(number){
-    let activeplayer = document.getElementById(`markerP${number}D`);
-    let comingplayer = document.getElementById(`markerP${number+1}D`);
-
-    activeplayer.style.removeProperty('border');
-    comingplayer.style.border = '2px solid black';
-}
-
 
 function waitForDieToBeRolled(ElementId) {
     return new Promise(resolve => {
         document.getElementById(ElementId).addEventListener("click", () => {
             resolve();
+        });
+    });
+}
+
+function waitForSelectecPawn(buttonIds) {
+    return new Promise(resolve => {
+        buttonIds.forEach(buttonId => {
+            document.getElementById(buttonId).addEventListener("click", () => {
+                resolve(buttonId);
+            });
         });
     });
 }

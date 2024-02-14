@@ -1,5 +1,8 @@
 let NameofPlayers = getPlayerNameFromURL();
 const Playerstat = createBoard (NameofPlayers);
+//let NewPlaystat = firstTurn (Playerstat);
+//rounds(NewPlaystat);
+
 rounds(Playerstat);
 
 //Functions
@@ -155,6 +158,7 @@ async function firstTurn(ArrayPlayers) {
         }
         activeplayer.style.removeProperty('border');
     }
+    return ArrayPlayers
 }
 
 async function rounds(ArrayPlayers){
@@ -168,25 +172,31 @@ async function rounds(ArrayPlayers){
             let pathWay = ArrayPlayers[i].Pathway;
             let pawns = ArrayPlayers[i].Pawn;
             let roll = 2;
-            
+            //showPawnswhenhover(pawns)
             await waitForDieToBeRolled('dice');
-            dice = rollDice();
-            
+            //dice = rollDice();
+            dice = 6;
+            let clickedPawnId = await waitForSelectecPawn([pawns[0][0], pawns[1][0], pawns[2][0], pawns[3][0]]);
+            console.log(clickedPawnId);
+            let possible = false;
             while (dice === 6){
-                const clickedPawnId = await waitForSelectecPawn([pawns[0][0], pawns[1][0], pawns[2][0], pawns[3][0]]);
-                movePawns(pathWay, pawns, clickedPawnId, dice);
-                console.log(clickedPawnId);
-                roll -= 1;
-                if (roll === 0){
-                    break;
+                possible = false;
+                while (possible === false);
+                    possible = movePawns(pathWay, pawns, clickedPawnId, dice);
+                    if (possible === 'nest'){
+                        ArrayPlayers[i].Nest += 1;
+                        nest = ArrayPlayers[i].Nest;
+                    } else (possible == true){
+                        roll -= 1;
+                        if (roll === 0){
+                            break;
+                        }
+                        await waitForDieToBeRolled('dice');
+                        dice = rollDice();
+                        clickedPawnId = await waitForSelectecPawn([pawns[0][0], pawns[1][0], pawns[2][0], pawns[3][0]]);    
                 }
-                await waitForDieToBeRolled('dice');
-                dice = rollDice();
-                const PawnId = await waitForSelectecPawn([pawns[0][0], pawns[1][0], pawns[2][0], pawns[3][0]]);
-                movePawns(pathWay, pawns, PawnId, dice);
             }
-            const PawnId1 = await waitForSelectecPawn([pawns[0][0], pawns[1][0], pawns[2][0], pawns[3][0]]);
-            movePawns(pathWay, pawns, PawnId1, dice);
+            possible = movePawns(pathWay, pawns, PawnId1, dice);
             console.log(PawnId1);
 
             activeplayer.style.removeProperty('border')
@@ -202,27 +212,35 @@ function rollDice() {
    return number+1;
 }
 
-async function movePawns(pathWay, pawns, PawnId, dice) {
-    for (let i = 0; i < 4; i++){
-        if (pawns[i][0] === PawnId){
-            let pathWaynr = pathWay.indexOf[pawns[i][1]];
-            /*if (pathWaynr+dice > pathWay.length){
-                let stop = document.getElementById(pathWay[pathWaynr+dice]);
-            }*/
-            let pawn = document.getElementById(PawnId);
-            let stop = document.getElementById(pathWay[pathWaynr+dice]);
-            pawns[i][1] = stop;
-            console.log(pawn)
-            stop.append(pawn);
-        } else if(dice === 1 || dice === 6){
+function movePawns(pathWay, pawns, PawnId, dice) {
+    let pawnindex, pathindex = findpawnindex(pathWay,pawns,pawnid);
+    //showPawnswhenhover(pawns)
+    if (pathindex === null){
+        if (dice === 1 || dice === 6){
             let pawn = document.getElementById(PawnId);
             let stop = document.getElementById(pathWay[dice-1]);
-            pawns[0][1] = stop;
+            pawns[pawnindex][1] = stop;
             stop.append(pawn);
             console.log(pawns);
+            return true
         } else {
-            alert('You can only select a pawn that is on the fields');
+            alert('You can only move this piece as you roll a 1 or a 6')
+            return false
         }
+
+    } else {
+        let pawn = document.getElementById(PawnId);
+        if (pathindex+dice > pathway){
+            pawn.remove()
+            return 'nest'
+        } else {
+            let stop = document.getElementById(pathWay[pathindex+dice]);
+            pawns[pawnindex][1] = stop;
+            stop.append(pawn);
+            console.log(pawns);
+            return true
+        }
+        
     }
 
 }
@@ -250,4 +268,34 @@ function waitForSelectecPawn(buttonIds) {
             });
         });
     });
+}
+
+function showPawnswhenhover(Pawnslist) {
+    for (let i = 0; i < Pawnslist; i++){
+        let pawn = document.getElementById(Pawnslist[i][0])
+        pawn.addEventListener('mouseenter', () =>
+            pawn.style.background = 'lightgreen');
+        pawn.addEventListener('mouseleave', () => 
+            pawn.style.background = null);
+    }
+}
+/**
+ * 
+ * @param {*} pathWay 
+ * @param {*} pawns 
+ * @param {*} pawnid 
+ * @returns the indexnumber if the pawn and where it is
+ */
+function findpawnindex(pathWay,pawns,pawnid){
+    for (let i = 0; i < pawns.length; i++){
+        if (pawns[i][0]===pawnid){;
+            let pathindex = pathWay.indexOf(pawns[i][1]);
+            let indexNumber = i;
+            if (pathindex === -1){
+                return indexNumber , null
+            } else {
+                return indexNumber , pathindex
+            }
+        } 
+    }
 }

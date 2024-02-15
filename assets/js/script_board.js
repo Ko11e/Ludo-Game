@@ -177,18 +177,18 @@ async function rounds(ArrayPlayers){
             let pawnslist = pawnList(pawns) // Creates a list of a the remaining pawns in the game.
             console.log(pawnslist);
             let clickedPawnId = await waitForSelectecPawn(pawnslist);
-            let possible = false;
+            let possible = 'false';
             while (dice === 6){
-                while (possible === false){
+                while (possible === 'false'){
                     possible = movePawns(pathWay, pawns, clickedPawnId, dice);
                     console.log('This move is '+ possible + ' and the dice rolled' + dice);
                     if (possible === 'nest'){
                         index = removepawned(clickedPawnId, pawns)
                         pawns.splice(index, 1); //remove the pawn fron the list.
-                        console.log(pawns);
+                        ArrayPlayers[i].Pawn = pawns;
                         ArrayPlayers[i].Nest += 1; // adds a score to the Nest
                         nest = ArrayPlayers[i].Nest;
-                    } else if (possible === true){
+                    } else if (possible === 'true'){
                         roll -= 1; // counter so the player can only roll max 3 times; 
                         if (roll === 0){
                             break;
@@ -196,23 +196,37 @@ async function rounds(ArrayPlayers){
                         await waitForDieToBeRolled('dice');
                         dice = rollDice();
                         clickedPawnId = await waitForSelectecPawn(pawnslist);
-                        possible = false;
+                        possible = 'false';
                     } else {
-                        if (allpawnsHome(pawns) === false){// This will and the players turn if all the pawns are home 
+                        if (allpawnsHome(pawns) === 'false'){// This will and the players turn if all the pawns are home 
                             break;
+                        } else {
+                            clickedPawnId = await waitForSelectecPawn(pawnslist);
                         }
                     }   
                 }
             }
-            while (possible === false){
+            while (possible === 'false'){
                 possible = movePawns(pathWay, pawns, clickedPawnId, dice);
+                console.log('This move is '+ possible + ' and the dice rolled' + dice);
+                console.log(typeof possible);
                 if (possible === 'nest'){
+                    index = removepawned(clickedPawnId, pawns)
+                    pawns.splice(index, 1); //remove the pawn fron the list.
+                    ArrayPlayers[i].Pawn = pawns;
+                    console.log(ArrayPlayers[i].Pawn)
                     ArrayPlayers[i].Nest += 1;
                     nest = ArrayPlayers[i].Nest;
-                } else if (possible === false) {
-                    alert('You can only move this piece as you roll a 1 or a 6');
-                    let homepawn = allpawnsHome(pawns);
-                    break;
+                } else if (possible === 'false') {
+                    let allpawnsathome = allpawnsHome(pawns);
+                    console.log(allpawnsathome)
+                    if (allpawnsathome === false){// This will and the players turn if all the pawns are home 
+                        alert('You can only move this piece as you roll a 1 or a 6\nSince all your pawns are in the ----, this is the end of your turn');
+                        break;
+                    } else {
+                        alert('You can only move this piece as you roll a 1 or a 6');
+                        clickedPawnId = await waitForSelectecPawn(pawnslist);
+                    }
                 }
 
             }
@@ -241,9 +255,9 @@ function movePawns(pathWay, pawns, PawnId, dice) {
             
             pawns[pawnindex][1] = pathWay[dice-1];
             stop.append(pawn);
-            return true;
+            return 'true';
         } else {
-            return false;            
+            return 'false';            
         }
 
     } else {
@@ -253,12 +267,12 @@ function movePawns(pathWay, pawns, PawnId, dice) {
         if (pawnpositionNew >= pathWay.length){ // did checks if the pawn can enter the nest.
             //pawns[pawnindex][1] = 'home' + pawns[1][0].charAt(0).toUpperCase() + pawns[1][0].slice(1);
             pawn.remove(); // pawn are removed from the field.
-            return 'nest'
+            return 'nest';
         } else {
             let stop = document.getElementById(pathWay[pawnpositionNew]);
             pawns[pawnindex][1] = pathWay[pawnpositionNew];
             stop.append(pawn);
-            return true
+            return 'true';
         }
         
     }
@@ -301,10 +315,10 @@ function showPawnswhenhover(Pawnslist) {
 }
 
 function removepawned(clickedPawnId, pawns) {
-    for (let i of pawns){
-        index = i[0].indexOf(clickedPawnId);
+    for (let i=0; i< pawns.length; ++i){
+        index = pawns[i].indexOf(clickedPawnId);
         if (index !== -1){
-            return index
+            return i
         }
     }
 }
@@ -341,9 +355,9 @@ function findpawnindex(pathWay,pawns,pawnid){
 
 function allpawnsHome(pawns) {
     let pawnsHome = 0;
-    for (let i=0; i < pawns; i++){
+    for (let i=0; i < pawns.length; i++){
         let home = 'home' + pawns[i][0].charAt(0).toUpperCase() + pawns[i][0].slice(1);
-        if (pawns[i][0] === home){
+        if (pawns[i][1] === home){
             pawnsHome += 1;
         }
     }

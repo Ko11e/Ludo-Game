@@ -1,5 +1,6 @@
 let NameofPlayers = getPlayerNameFromURL();
-const Playerstat = createBoard (NameofPlayers);
+let Playerstat = createBoard (NameofPlayers);
+//console.log(Playerstat);
 //let NewPlaystat = firstTurn (Playerstat);
 //rounds(NewPlaystat);
 
@@ -30,12 +31,10 @@ function getPlayerNameFromURL() {
     const player1FromUrl = url.searchParams.get('player1');
     player1FromUrl !== '' ? list.push(player1FromUrl) : list.push('Player 1');
     const player2FromUrl = url.searchParams.get('player2');
-    console.log(typeof player2FromUrl);
     player2FromUrl !== '' ? list.push(player2FromUrl) : list.push('Player 2');
     
     let player3FromUrl = '';
     let player4FromUrl = '';
-
     try {
         player3FromUrl = url.searchParams.get('player3');
         if (player3FromUrl !== null){
@@ -135,30 +134,36 @@ async function firstTurn(ArrayPlayers) {
         while (rolls !== 3){ // stop the turn if the players have rolled the die 3 times
             await waitForDieToBeRolled('dice');
             dice = rollDice();
-            console.log(dice);
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>';
 
-            if (dice === 1){              
-                let pawn = document.getElementById(pawns[1][0]);
+            if (dice === 1){   
+                let pawn = document.getElementById(pawns[0][0]);
                 let stop = document.getElementById(pathWay[0]);
-                pawns[0][1] = stop;
+
+                pawns[0][1] = pathWay[0];
                 stop.append(pawn);
                 break;
             } else if (dice == 6){
-                let pawn = document.getElementById(pawns[1][0]);
+                let pawn = document.getElementById(pawns[0][0]);
                 let stop = document.getElementById(pathWay[5]);
-                pawns[0][1] = stop;
+
+                pawns[0][1] = pathWay[5];
                 stop.append(pawn);
                 break;
             } else {
                 rolls +=1
             }
+            
         }
         activeplayer.style.removeProperty('border'); // remove the marker from the active player
     }
     return ArrayPlayers
 }
 
-async function rounds(ArrayPlayers){
+async function rounds(ArrayPlayers1){
+    let ArrayPlayers = await firstTurn (ArrayPlayers1);
+    
     let nest = 0;
 
     while (nest !==4){
@@ -173,12 +178,12 @@ async function rounds(ArrayPlayers){
             await waitForDieToBeRolled('dice');
             dice = rollDice();
             let pawnslist = pawnList(pawns) // Creates a list of a the remaining pawns in the game.
-            console.log(pawnslist);
             let clickedPawnId = await waitForSelectecPawn(pawnslist);
             let possible = 'false';
+
             while (dice === 6){
-                while (possible === 'false'){
-                    possible = movePawns(pathWay, pawns, clickedPawnId, dice);
+                //while (possible === 'false' && dice === 6){
+                    possible = movePawns(pathWay, pawns, clickedPawnId, dice, ArrayPlayers);
                     console.log('This move is '+ possible + ' and the dice rolled' + dice);
                     if (possible === 'nest'){
                         index = removepawned(clickedPawnId, pawns)
@@ -186,16 +191,17 @@ async function rounds(ArrayPlayers){
                         ArrayPlayers[i].Pawn = pawns;
                         ArrayPlayers[i].Nest += 1; // adds a score to the Nest
                         nest = ArrayPlayers[i].Nest;
-                    } else if (possible === 'true'){
-                        roll -= 1; // counter so the player can only roll max 3 times; 
+                    } else if (possible === 'true'){ 
                         if (roll === 0){
                             break;
                         }
+                        roll -= 1; // counter so the player can only roll max 3 times;
                         document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>';
                         await waitForDieToBeRolled('dice');
                         dice = rollDice();
                         clickedPawnId = await waitForSelectecPawn(pawnslist);
-                        possible = 'false';
+                        console.log(clickedPawnId);
+                        //possible = 'false';
                     } else {
                         if (allpawnsHome(pawns) === 'false'){// This will and the players turn if all the pawns are home 
                             break;
@@ -203,10 +209,10 @@ async function rounds(ArrayPlayers){
                             clickedPawnId = await waitForSelectecPawn(pawnslist);
                         }
                     }   
-                }
+                //}
             }
             while (possible === 'false'){
-                possible = movePawns(pathWay, pawns, clickedPawnId, dice);
+                possible = movePawns(pathWay, pawns, clickedPawnId, dice, ArrayPlayers);
                 if (possible === 'nest'){
                     index = removepawned(clickedPawnId, pawns)
                     pawns.splice(index, 1); //remove the pawn fron the list.
@@ -229,16 +235,18 @@ async function rounds(ArrayPlayers){
             document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>';            
         }
     }
+
 }
 
 function rollDice() {
    let number = Math.floor(Math.random() *6);
-   let dicedisplay = dicesides ();
+   let dicedisplay = ['<i class="fa-solid fa-dice-one"></i>', '<i class="fa-solid fa-dice-two"></i>', '<i class="fa-solid fa-dice-three"></i>',
+   '<i class="fa-solid fa-dice-four">','</i><i class="fa-solid fa-dice-five"></i>','<i class="fa-solid fa-dice-six"></i>'];
    document.getElementById('dice').innerHTML = dicedisplay[number];
-   return 6;//number+1;
+   return number+1;
 }
 
-function movePawns(pathWay, pawns, PawnId, dice) {
+function movePawns(pathWay, pawns, PawnId, dice,ArrayPlayers) {
     let indexed = findpawnindex(pathWay,pawns,PawnId);
     let pawnindex = indexed[0];
     let pathindex = indexed[1];
@@ -248,6 +256,7 @@ function movePawns(pathWay, pawns, PawnId, dice) {
             let pawn = document.getElementById(PawnId);
             let stop = document.getElementById(pathWay[dice-1]);
             
+            possiblePush(stop, ArrayPlayers)
             pawns[pawnindex][1] = pathWay[dice-1];
             stop.append(pawn);
             return 'true';
@@ -264,6 +273,8 @@ function movePawns(pathWay, pawns, PawnId, dice) {
             return 'nest';
         } else {
             let stop = document.getElementById(pathWay[pawnpositionNew]);
+
+            possiblePush(stop, ArrayPlayers)
             pawns[pawnindex][1] = pathWay[pawnpositionNew];
             stop.append(pawn);
             return 'true';
@@ -272,13 +283,6 @@ function movePawns(pathWay, pawns, PawnId, dice) {
     }
 
 }
-
-function dicesides (){
-    let dice =['<i class="fa-solid fa-dice-one"></i>', '<i class="fa-solid fa-dice-two"></i>', '<i class="fa-solid fa-dice-three"></i>',
-   '<i class="fa-solid fa-dice-four">','</i><i class="fa-solid fa-dice-five"></i>','<i class="fa-solid fa-dice-six"></i>'];
-   return dice;
-}
-
 
 function waitForDieToBeRolled(ElementId) {
     return new Promise(resolve => {
@@ -360,4 +364,29 @@ function allpawnsHome(pawns) {
     } else {
         return true
     }      
+}
+
+function possiblePush(stop, ArrayPlayers) {
+    if (stop.hasChildNodes() === true) {
+        let pushedPiece = stop.firstChild.id
+        let homebase = 'home'+ pushedPiece.charAt(0).toUpperCase() + pushedPiece.slice(1);
+
+        let pawn = document.getElementById(pushedPiece);
+        let homeplate = document.getElementById(homebase);
+            
+        homeplate.append(pawn);
+
+        for (let i = 0; i < ArrayPlayers.length; i++){
+            console.log(ArrayPlayers);
+            let pawn = ArrayPlayers[i].Pawn;
+            console.log(pawn);
+            for (let j = 0; j < pawn.length; j++){
+                console.log(pawn[j][0], pushedPiece)
+                if (pawn[j][0] === pushedPiece){
+                    pawn[j][1] = homebase;
+                }
+            }
+        }
+
+    }
 }

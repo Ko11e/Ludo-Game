@@ -1,22 +1,12 @@
-let NameofPlayers = getPlayerNameFromURL();
-let Playerstat = createBoard (NameofPlayers);
-//console.log(Playerstat);
-//let NewPlaystat = firstTurn (Playerstat);
-//rounds(NewPlaystat);
-
-rounds(Playerstat);
+main();
 
 //Functions
 function main(){
     let NameofPlayers = getPlayerNameFromURL();
     const Playerstat = createBoard (NameofPlayers);
-    firstTurn (Playerstat);
+    rounds(Playerstat);
 
     
-
-
-
-
 }
 
 /**
@@ -176,45 +166,44 @@ async function rounds(ArrayPlayers1){
             let roll = 2;
 
             await waitForDieToBeRolled('dice');
-            dice = rollDice();
+            let dice = rollDice();
             let pawnslist = pawnList(pawns) // Creates a list of a the remaining pawns in the game.
             let clickedPawnId = await waitForSelectecPawn(pawnslist);
             let possible = 'false';
 
             while (dice === 6){
-                //while (possible === 'false' && dice === 6){
+                while (possible === 'false'){
                     possible = movePawns(pathWay, pawns, clickedPawnId, dice, ArrayPlayers);
-                    console.log('This move is '+ possible + ' and the dice rolled' + dice);
-                    if (possible === 'nest'){
-                        index = removepawned(clickedPawnId, pawns)
+                    if (possible === 'nest'){ // if the pawn goes to the center.
+                        let index = removepawned(clickedPawnId, pawns)
                         pawns.splice(index, 1); //remove the pawn fron the list.
                         ArrayPlayers[i].Pawn = pawns;
                         ArrayPlayers[i].Nest += 1; // adds a score to the Nest
                         nest = ArrayPlayers[i].Nest;
                     } else if (possible === 'true'){ 
+                        roll -= 1; // counter so the player can only roll max 3 times;
                         if (roll === 0){
                             break;
                         }
-                        roll -= 1; // counter so the player can only roll max 3 times;
                         document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>';
                         await waitForDieToBeRolled('dice');
                         dice = rollDice();
                         clickedPawnId = await waitForSelectecPawn(pawnslist);
                         console.log(clickedPawnId);
-                        //possible = 'false';
                     } else {
                         if (allpawnsHome(pawns) === 'false'){// This will and the players turn if all the pawns are home 
                             break;
                         } else {
                             clickedPawnId = await waitForSelectecPawn(pawnslist);
                         }
-                    }   
-                //}
+                    }
+  
+                }
             }
             while (possible === 'false'){
                 possible = movePawns(pathWay, pawns, clickedPawnId, dice, ArrayPlayers);
                 if (possible === 'nest'){
-                    index = removepawned(clickedPawnId, pawns)
+                    let index = removepawned(clickedPawnId, pawns)
                     pawns.splice(index, 1); //remove the pawn fron the list.
                     ArrayPlayers[i].Pawn = pawns;
                     ArrayPlayers[i].Nest += 1;
@@ -222,7 +211,7 @@ async function rounds(ArrayPlayers1){
                 } else if (possible === 'false') {
                     let allpawnsathome = allpawnsHome(pawns);
                     if (allpawnsathome === false){// This will and the players turn if all the pawns are home 
-                        alert('You can only move this piece as you roll a 1 or a 6\nSince all your pawns are in the ----, this is the end of your turn');
+                        alert('You can only move this piece as you roll a 1 or a 6\nSince all your pawns are in the Home, this is the end of your turn');
                         break;
                     } else {
                         alert('You can only move this piece as you roll a 1 or a 6');
@@ -232,7 +221,12 @@ async function rounds(ArrayPlayers1){
 
             }
             activeplayer.style.removeProperty('border');
-            document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>';            
+            document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>';
+            
+            if (nest === 4){
+                alert(`${ArrayPlayers[i].Name} is the winner!`);
+            }
+        
         }
     }
 
@@ -302,16 +296,6 @@ function waitForSelectecPawn(buttonIds) {
     });
 }
 
-function showPawnswhenhover(Pawnslist) {
-    for (let i = 0; i < Pawnslist; i++){
-        let pawn = document.getElementById(Pawnslist[i][0])
-        pawn.addEventListener('mouseenter', () =>
-            pawn.style.background = 'lightgreen');
-        pawn.addEventListener('mouseleave', () => 
-            pawn.style.background = null);
-    }
-}
-
 function removepawned(clickedPawnId, pawns) {
     for (let i=0; i< pawns.length; ++i){
         index = pawns[i].indexOf(clickedPawnId);
@@ -322,7 +306,7 @@ function removepawned(clickedPawnId, pawns) {
 }
 
 function pawnList(pawns){
-    list = [];
+    let list = [];
     for (let i=0; i < pawns.length; i++){
         list.push(pawns[i][0])
     }
@@ -377,11 +361,8 @@ function possiblePush(stop, ArrayPlayers) {
         homeplate.append(pawn);
 
         for (let i = 0; i < ArrayPlayers.length; i++){
-            console.log(ArrayPlayers);
             let pawn = ArrayPlayers[i].Pawn;
-            console.log(pawn);
             for (let j = 0; j < pawn.length; j++){
-                console.log(pawn[j][0], pushedPiece)
                 if (pawn[j][0] === pushedPiece){
                     pawn[j][1] = homebase;
                 }

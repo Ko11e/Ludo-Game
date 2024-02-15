@@ -25,24 +25,28 @@ function main(){
 function getPlayerNameFromURL() {
     const urlString = window.location.href;
     let url = new URL(urlString);
+    let list = [];
+
     const player1FromUrl = url.searchParams.get('player1');
+    player1FromUrl !== '' ? list.push(player1FromUrl) : list.push('Player 1');
     const player2FromUrl = url.searchParams.get('player2');
+    console.log(typeof player2FromUrl);
+    player2FromUrl !== '' ? list.push(player2FromUrl) : list.push('Player 2');
+    
     let player3FromUrl = '';
     let player4FromUrl = '';
-
-    let list = [player1FromUrl, player2FromUrl]
 
     try {
         player3FromUrl = url.searchParams.get('player3');
         if (player3FromUrl !== null){
-            list.push(player3FromUrl);
+            player3FromUrl !== '' ? list.push(player3FromUrl) : list.push('Player 3');
         }
         player4FromUrl = url.searchParams.get('player4');
         if (player4FromUrl !== null){
-            list.push(player4FromUrl);
+            player4FromUrl !== '' ? list.push(player4FromUrl) : list.push('Player 4');
         }
     } catch(e){};
-    console.log(list);
+
     return list;
 }
 
@@ -57,7 +61,6 @@ function createBoard(Listplayers) {
 
     removenonplayers(listLenght);
     let statPlayers = createplayerobject(Listplayers);
-    if (listLenght)
 
     return statPlayers;
 }
@@ -107,9 +110,6 @@ function createplayerobject(array){
         
         } else {
             let nameText = document.getElementById(`playerText${i+1}`);
-
-            //if (Listplayers[i] === '');
-                //Listplayers[i] = `Player${i+1}`;
             nameText.innerHTML = array[i];
             let stat = {Name: array[i], Nest: 0, Pathway: pathways[i], Pawn: colors[i]};
             statPlayers.push(stat);
@@ -167,8 +167,6 @@ async function rounds(ArrayPlayers){
             activeplayer.style.border = '2px solid black';
 
             let pathWay = ArrayPlayers[i].Pathway
-
-
             let pawns = ArrayPlayers[i].Pawn;
             let roll = 2;
 
@@ -193,6 +191,7 @@ async function rounds(ArrayPlayers){
                         if (roll === 0){
                             break;
                         }
+                        document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>';
                         await waitForDieToBeRolled('dice');
                         dice = rollDice();
                         clickedPawnId = await waitForSelectecPawn(pawnslist);
@@ -208,18 +207,14 @@ async function rounds(ArrayPlayers){
             }
             while (possible === 'false'){
                 possible = movePawns(pathWay, pawns, clickedPawnId, dice);
-                console.log('This move is '+ possible + ' and the dice rolled' + dice);
-                console.log(typeof possible);
                 if (possible === 'nest'){
                     index = removepawned(clickedPawnId, pawns)
                     pawns.splice(index, 1); //remove the pawn fron the list.
                     ArrayPlayers[i].Pawn = pawns;
-                    console.log(ArrayPlayers[i].Pawn)
                     ArrayPlayers[i].Nest += 1;
                     nest = ArrayPlayers[i].Nest;
                 } else if (possible === 'false') {
                     let allpawnsathome = allpawnsHome(pawns);
-                    console.log(allpawnsathome)
                     if (allpawnsathome === false){// This will and the players turn if all the pawns are home 
                         alert('You can only move this piece as you roll a 1 or a 6\nSince all your pawns are in the ----, this is the end of your turn');
                         break;
@@ -230,8 +225,8 @@ async function rounds(ArrayPlayers){
                 }
 
             }
-            activeplayer.style.removeProperty('border')
-            
+            activeplayer.style.removeProperty('border');
+            document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>';            
         }
     }
 }
@@ -240,7 +235,7 @@ function rollDice() {
    let number = Math.floor(Math.random() *6);
    let dicedisplay = dicesides ();
    document.getElementById('dice').innerHTML = dicedisplay[number];
-   return number+1;
+   return 6;//number+1;
 }
 
 function movePawns(pathWay, pawns, PawnId, dice) {
@@ -265,7 +260,6 @@ function movePawns(pathWay, pawns, PawnId, dice) {
         let pawnpositionNew = pathindex+dice
 
         if (pawnpositionNew >= pathWay.length){ // did checks if the pawn can enter the nest.
-            //pawns[pawnindex][1] = 'home' + pawns[1][0].charAt(0).toUpperCase() + pawns[1][0].slice(1);
             pawn.remove(); // pawn are removed from the field.
             return 'nest';
         } else {

@@ -252,13 +252,15 @@ function movePawns(pathWay, pawns, PawnId, dice) {
 
     } else {
         let pawn = document.getElementById(PawnId);
-        if (pathindex+dice >= pathWay.length){ // did checks if the pawn can enter the nest.
-            pawns[pawnindex][1] = 'home' + pawns[1][0].charAt(0).toUpperCase() + pawns[1][0].slice(1)
-            pawn.remove() // pawn are removed from the field.
+        let pawnpositionNew = pathindex+dice
+        console.log('New pawn position is '+ pawnpositionNew)
+        if (pawnpositionNew >= pathWay.length){ // did checks if the pawn can enter the nest.
+            pawns[pawnindex][1] = 'home' + pawns[1][0].charAt(0).toUpperCase() + pawns[1][0].slice(1);
+            pawn.remove(); // pawn are removed from the field.
             return 'nest'
         } else {
-            let stop = document.getElementById(pathWay[pathindex+dice]);
-            pawns[pawnindex][1] = pathWay[pathindex+dice];
+            let stop = document.getElementById(pathWay[pawnpositionNew]);
+            pawns[pawnindex][1] = pathWay[pawnpositionNew];
             stop.append(pawn);
             return true
         }

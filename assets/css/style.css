@@ -226,6 +226,11 @@ input[type=text] {
     align-items: center;
 }
 
+.markerP1:hover, .markerP2:hover,
+.markerP3:hover, .markerP4:hover {
+    background-color: rgba(55, 218, 247, 0.486);
+}
+
 .pawnbas {
     width: 30%;
     display: flex;

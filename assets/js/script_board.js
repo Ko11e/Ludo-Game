@@ -120,18 +120,19 @@ function createplayerobject(array){
 }
 
 /**
- * this is the first turn for every player.
- * @param {} ArrayPlayers 
+ * this is the first turn for every player since on the first time are able to roll the die 3 time to get a 1 or a 6.
+ * @param {*} ArrayPlayers 
+ * @returns a new list/object 
  */
 async function firstTurn(ArrayPlayers) {
     for (let i=0; i<ArrayPlayers.length; i++){
         let activeplayer = document.getElementsByClassName('activemarker')[i];
-        activeplayer.style.border = '2px solid black';
+        activeplayer.style.border = '2px solid black'; // Adds a marker to the active player
 
         let pathWay = ArrayPlayers[i].Pathway;
         let pawns = ArrayPlayers[i].Pawn;
         let rolls = 0;
-        while (rolls !== 3){
+        while (rolls !== 3){ // stop the turn if the players have rolled the die 3 times
             await waitForDieToBeRolled('dice');
             dice = rollDice();
             console.log(dice);
@@ -141,22 +142,18 @@ async function firstTurn(ArrayPlayers) {
                 let stop = document.getElementById(pathWay[0]);
                 pawns[0][1] = stop;
                 stop.append(pawn);
-                console.log(pawns);
                 break;
             } else if (dice == 6){
                 let pawn = document.getElementById(pawns[1][0]);
                 let stop = document.getElementById(pathWay[5]);
                 pawns[0][1] = stop;
                 stop.append(pawn);
-                console.log(pawns);
                 break;
             } else {
                 rolls +=1
             }
-
-        
         }
-        activeplayer.style.removeProperty('border');
+        activeplayer.style.removeProperty('border'); // remove the marker from the active player
     }
     return ArrayPlayers
 }
@@ -168,37 +165,54 @@ async function rounds(ArrayPlayers){
         for (let i=0; i<ArrayPlayers.length; i++){
             let activeplayer = document.getElementsByClassName('activemarker')[i];
             activeplayer.style.border = '2px solid black';
-            
-            let pathWay = ArrayPlayers[i].Pathway;
+
+            let pathWay = ArrayPlayers[i].Pathway
+
+
             let pawns = ArrayPlayers[i].Pawn;
             let roll = 2;
-            //showPawnswhenhover(pawns)
+
             await waitForDieToBeRolled('dice');
-            //dice = rollDice();
-            dice = 6;
+            dice = rollDice();
             let clickedPawnId = await waitForSelectecPawn([pawns[0][0], pawns[1][0], pawns[2][0], pawns[3][0]]);
-            console.log(clickedPawnId);
             let possible = false;
             while (dice === 6){
-                possible = false;
-                while (possible === false);
+                while (possible === false){
                     possible = movePawns(pathWay, pawns, clickedPawnId, dice);
+                    console.log('This move is '+ possible + ' and the dice rolled' + dice);
                     if (possible === 'nest'){
                         ArrayPlayers[i].Nest += 1;
                         nest = ArrayPlayers[i].Nest;
-                    } else (possible == true){
-                        roll -= 1;
+                    } else if (possible === true){
+                        roll -= 1; // counter so the player can only roll max 3 times; 
                         if (roll === 0){
                             break;
                         }
                         await waitForDieToBeRolled('dice');
                         dice = rollDice();
-                        clickedPawnId = await waitForSelectecPawn([pawns[0][0], pawns[1][0], pawns[2][0], pawns[3][0]]);    
+                        clickedPawnId = await waitForSelectecPawn([pawns[0][0], pawns[1][0], pawns[2][0], pawns[3][0]]);
+                        possible = false;
+                    } else {
+                        if (allpawnsHome(pawns) === false){// This will and the players turn if all the pawns are home 
+                            break;
+                        }
+                    }   
                 }
             }
-            possible = movePawns(pathWay, pawns, PawnId1, dice);
-            console.log(PawnId1);
+            while (possible === false){
+                possible = movePawns(pathWay, pawns, clickedPawnId, dice);
+                console.log('This move is '+ possible + ' and the dice rolled' + dice);
+                if (possible === 'nest'){
+                    ArrayPlayers[i].Nest += 1;
+                    nest = ArrayPlayers[i].Nest;
+                } else if (possible === false) {
+                    alert('You can only move this piece as you roll a 1 or a 6');
+                    let homepawn = allpawnsHome(pawns);
+                    console.log(homepawn)
+                    break;
+                }
 
+            }
             activeplayer.style.removeProperty('border')
             
         }
@@ -213,31 +227,39 @@ function rollDice() {
 }
 
 function movePawns(pathWay, pawns, PawnId, dice) {
-    let pawnindex, pathindex = findpawnindex(pathWay,pawns,pawnid);
-    //showPawnswhenhover(pawns)
-    if (pathindex === null){
+    let indexed = findpawnindex(pathWay,pawns,PawnId);
+    console.log(indexed);
+    let pawnindex = indexed[0];
+    let pathindex = indexed[1];
+
+    console.log(pawnindex, pathindex)
+
+    if (pathindex === null){ //shows that the pawn are home and can only be play if the die is a 6 or 1
         if (dice === 1 || dice === 6){
             let pawn = document.getElementById(PawnId);
             let stop = document.getElementById(pathWay[dice-1]);
-            pawns[pawnindex][1] = stop;
+            console.log(stop);
+            
+            console.log(pathWay[dice-1]);
+            console.log(typeof pathWay[dice-1]);
+            console.log(pawnindex);
+            pawns[pawnindex][1] = pathWay[dice-1];
             stop.append(pawn);
-            console.log(pawns);
-            return true
+            return true;
         } else {
-            alert('You can only move this piece as you roll a 1 or a 6')
-            return false
+            return false;            
         }
 
     } else {
         let pawn = document.getElementById(PawnId);
-        if (pathindex+dice > pathway){
-            pawn.remove()
+        if (pathindex+dice >= pathWay.length){ // did checks if the pawn can enter the nest.
+            pawns[pawnindex][1] = 'home' + pawns[1][0].charAt(0).toUpperCase() + pawns[1][0].slice(1)
+            pawn.remove() // pawn are removed from the field.
             return 'nest'
         } else {
             let stop = document.getElementById(pathWay[pathindex+dice]);
-            pawns[pawnindex][1] = stop;
+            pawns[pawnindex][1] = pathWay[pathindex+dice];
             stop.append(pawn);
-            console.log(pawns);
             return true
         }
         
@@ -288,14 +310,31 @@ function showPawnswhenhover(Pawnslist) {
  */
 function findpawnindex(pathWay,pawns,pawnid){
     for (let i = 0; i < pawns.length; i++){
-        if (pawns[i][0]===pawnid){;
-            let pathindex = pathWay.indexOf(pawns[i][1]);
+        if (pawns[i][0]===pawnid){
+            let pathindex = pathWay.indexOf(pawns[i][1]);//see if the pawn is home.
             let indexNumber = i;
+
             if (pathindex === -1){
-                return indexNumber , null
+                console.log('the number of the pawn ' + indexNumber)
+                return [indexNumber , null];
             } else {
-                return indexNumber , pathindex
+                return [indexNumber , pathindex];
             }
         } 
     }
+}
+
+function allpawnsHome(pawns) {
+    let pawnsHome = 0;
+    for (let i=0; i < pawns; i++){
+        let home = 'home' + pawns[i][0].charAt(0).toUpperCase() + pawns[i][0].slice(1);
+        if (pawns[i][0] === home){
+            pawnsHome += 1;
+        }
+    }
+    if (pawnsHome === 4){
+        return false
+    } else {
+        return true
+    }      
 }

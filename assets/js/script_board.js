@@ -34,7 +34,7 @@ function getPlayerNameFromURL() {
         if (player4FromUrl !== null){
             player4FromUrl !== '' ? list.push(player4FromUrl) : list.push('Player 4');
         }
-    } catch(e){};
+    } catch(e){}
 
     return list;
 }
@@ -60,7 +60,7 @@ function createBoard(Listplayers) {
  */
 function removenonplayers(Numberofplayers) {
     for (let i = Numberofplayers + 1; i <= 4; i++) {
-        let pawns = document.getElementsByClassName(`markerP${i}`)
+        let pawns = document.getElementsByClassName(`markerP${i}`);
         while (pawns[0]) {
             pawns[0].parentNode.removeChild(pawns[0]);
         }
@@ -81,7 +81,7 @@ function createplayerobject(array){
     ['21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '1', 
     '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '3.1', '3.2', '3.3', '3.4'],
     ['31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', 
-    '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '4.1', '4.2', '4.3', '4.4']]
+    '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '4.1', '4.2', '4.3', '4.4']];
     
     for (let i = 0; i < listLenght; i++) {
         if (listLenght ===2){
@@ -104,7 +104,7 @@ function createplayerobject(array){
             statPlayers.push(stat);
         }
     }
-    return statPlayers
+    return statPlayers;
 
 }
 
@@ -123,7 +123,7 @@ async function firstTurn(ArrayPlayers) {
         let rolls = 0;
         while (rolls !== 3){ // stop the turn if the players have rolled the die 3 times
             await waitForDieToBeRolled('dice');
-            dice = rollDice();
+            let dice = rollDice();
             await new Promise(resolve => setTimeout(resolve, 2000));
             document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>';
 
@@ -142,13 +142,13 @@ async function firstTurn(ArrayPlayers) {
                 stop.append(pawn);
                 break;
             } else {
-                rolls +=1
+                rolls +=1;
             }
             
         }
         activeplayer.style.removeProperty('border'); // remove the marker from the active player
     }
-    return ArrayPlayers
+    return ArrayPlayers;
 }
 
 async function rounds(ArrayPlayers1){
@@ -161,13 +161,13 @@ async function rounds(ArrayPlayers1){
             let activeplayer = document.getElementsByClassName('activemarker')[i];
             activeplayer.style.border = '2px solid black';
 
-            let pathWay = ArrayPlayers[i].Pathway
+            let pathWay = ArrayPlayers[i].Pathway;
             let pawns = ArrayPlayers[i].Pawn;
             let roll = 2;
 
             await waitForDieToBeRolled('dice');
             let dice = rollDice();
-            let pawnslist = pawnList(pawns) // Creates a list of a the remaining pawns in the game.
+            let pawnslist = pawnList(pawns); // Creates a list of a the remaining pawns in the game.
             let clickedPawnId = await waitForSelectecPawn(pawnslist);
             let possible = 'false';
 
@@ -175,7 +175,7 @@ async function rounds(ArrayPlayers1){
                 while (possible === 'false'){
                     possible = movePawns(pathWay, pawns, clickedPawnId, dice, ArrayPlayers);
                     if (possible === 'nest'){ // if the pawn goes to the center.
-                        let index = removepawned(clickedPawnId, pawns)
+                        let index = removepawned(clickedPawnId, pawns);
                         pawns.splice(index, 1); //remove the pawn fron the list.
                         ArrayPlayers[i].Pawn = pawns;
                         ArrayPlayers[i].Nest += 1; // adds a score to the Nest
@@ -189,7 +189,6 @@ async function rounds(ArrayPlayers1){
                         await waitForDieToBeRolled('dice');
                         dice = rollDice();
                         clickedPawnId = await waitForSelectecPawn(pawnslist);
-                        console.log(clickedPawnId);
                     } else {
                         if (allpawnsHome(pawns) === 'false'){// This will and the players turn if all the pawns are home 
                             break;
@@ -203,7 +202,7 @@ async function rounds(ArrayPlayers1){
             while (possible === 'false'){
                 possible = movePawns(pathWay, pawns, clickedPawnId, dice, ArrayPlayers);
                 if (possible === 'nest'){
-                    let index = removepawned(clickedPawnId, pawns)
+                    let index = removepawned(clickedPawnId, pawns);
                     pawns.splice(index, 1); //remove the pawn fron the list.
                     ArrayPlayers[i].Pawn = pawns;
                     ArrayPlayers[i].Nest += 1;
@@ -250,7 +249,7 @@ function movePawns(pathWay, pawns, PawnId, dice,ArrayPlayers) {
             let pawn = document.getElementById(PawnId);
             let stop = document.getElementById(pathWay[dice-1]);
             
-            possiblePush(stop, ArrayPlayers)
+            possiblePush(stop, ArrayPlayers);
             pawns[pawnindex][1] = pathWay[dice-1];
             stop.append(pawn);
             return 'true';
@@ -260,7 +259,7 @@ function movePawns(pathWay, pawns, PawnId, dice,ArrayPlayers) {
 
     } else {
         let pawn = document.getElementById(PawnId);
-        let pawnpositionNew = pathindex+dice
+        let pawnpositionNew = pathindex+dice;
 
         if (pawnpositionNew >= pathWay.length){ // did checks if the pawn can enter the nest.
             pawn.remove(); // pawn are removed from the field.
@@ -268,7 +267,7 @@ function movePawns(pathWay, pawns, PawnId, dice,ArrayPlayers) {
         } else {
             let stop = document.getElementById(pathWay[pawnpositionNew]);
 
-            possiblePush(stop, ArrayPlayers)
+            possiblePush(stop, ArrayPlayers);
             pawns[pawnindex][1] = pathWay[pawnpositionNew];
             stop.append(pawn);
             return 'true';
@@ -298,9 +297,9 @@ function waitForSelectecPawn(buttonIds) {
 
 function removepawned(clickedPawnId, pawns) {
     for (let i=0; i< pawns.length; ++i){
-        index = pawns[i].indexOf(clickedPawnId);
+        let index = pawns[i].indexOf(clickedPawnId);
         if (index !== -1){
-            return i
+            return i;
         }
     }
 }
@@ -308,9 +307,9 @@ function removepawned(clickedPawnId, pawns) {
 function pawnList(pawns){
     let list = [];
     for (let i=0; i < pawns.length; i++){
-        list.push(pawns[i][0])
+        list.push(pawns[i][0]);
     }
-    return list
+    return list;
 }
 /**
  * 
@@ -326,7 +325,6 @@ function findpawnindex(pathWay,pawns,pawnid){
             let indexNumber = i;
 
             if (pathindex === -1){
-                console.log('the number of the pawn ' + indexNumber)
                 return [indexNumber , null];
             } else {
                 return [indexNumber , pathindex];
@@ -344,15 +342,15 @@ function allpawnsHome(pawns) {
         }
     }
     if (pawnsHome === 4){
-        return false
+        return false;
     } else {
-        return true
+        return true;
     }      
 }
 
 function possiblePush(stop, ArrayPlayers) {
     if (stop.hasChildNodes() === true) {
-        let pushedPiece = stop.firstChild.id
+        let pushedPiece = stop.firstChild.id;
         let homebase = 'home'+ pushedPiece.charAt(0).toUpperCase() + pushedPiece.slice(1);
 
         let pawn = document.getElementById(pushedPiece);

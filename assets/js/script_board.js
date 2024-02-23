@@ -21,7 +21,7 @@ function getPlayerNameFromURL() {
     const player1FromUrl = url.searchParams.get('player1');
     player1FromUrl !== '' ? list.push(player1FromUrl) : list.push('Player 1');
     const player2FromUrl = url.searchParams.get('player2');
-    player2FromUrl !== '' ? list.push(player2FromUrl) : list.push('Player 2');
+    player2FromUrl !== '' ? list.push(player2FromUrl) : list.push('Player 2'); 
     
     let player3FromUrl = '';
     let player4FromUrl = '';
@@ -163,68 +163,72 @@ async function rounds(ArrayPlayers1){
 
             let pathWay = ArrayPlayers[i].Pathway;
             let pawns = ArrayPlayers[i].Pawn;
-            let roll = 2;
+            let rolls = 1;
 
             await waitForDieToBeRolled('dice');
             let dice = rollDice();
             let pawnslist = pawnList(pawns); // Creates a list of a the remaining pawns in the game.
             let clickedPawnId = await waitForSelectecPawn(pawnslist);
-            let possible = 'false';
+            let possible = movePawns(pathWay, pawns, clickedPawnId, dice, ArrayPlayers);
 
-            while (dice === 6){
-                while (possible === 'false'){
-                    possible = movePawns(pathWay, pawns, clickedPawnId, dice, ArrayPlayers);
-                    if (possible === 'nest'){ // if the pawn goes to the center.
-                        let index = removepawned(clickedPawnId, pawns);
-                        pawns.splice(index, 1); //remove the pawn fron the list.
-                        ArrayPlayers[i].Pawn = pawns;
-                        ArrayPlayers[i].Nest += 1; // adds a score to the Nest
-                        nest = ArrayPlayers[i].Nest;
-                    } else if (possible === 'true'){ 
-                        roll -= 1; // counter so the player can only roll max 3 times;
-                        if (roll === 0){
-                            break;
-                        }
-                        document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>';
-                        await waitForDieToBeRolled('dice');
-                        dice = rollDice();
-                        clickedPawnId = await waitForSelectecPawn(pawnslist);
-                    } else {
-                        if (allpawnsHome(pawns) === 'false'){// This will and the players turn if all the pawns are home 
-                            break;
-                        } else {
-                            clickedPawnId = await waitForSelectecPawn(pawnslist);
-                        }
-                    }
-  
-                }
-            }
-            while (possible === 'false'){
-                possible = movePawns(pathWay, pawns, clickedPawnId, dice, ArrayPlayers);
-                if (possible === 'nest'){
+            while (dice === 6){ 
+                if (possible === 'nest'){ // if the pawn goes to the center.
                     let index = removepawned(clickedPawnId, pawns);
-                    pawns.splice(index, 1); //remove the pawn fron the list.
-                    ArrayPlayers[i].Pawn = pawns;
-                    ArrayPlayers[i].Nest += 1;
-                    nest = ArrayPlayers[i].Nest;
-                } else if (possible === 'false') {
-                    let allpawnsathome = allpawnsHome(pawns);
-                    if (allpawnsathome === false){// This will and the players turn if all the pawns are home 
-                        alert('You can only move this piece as you roll a 1 or a 6\nSince all your pawns are in the Home, this is the end of your turn');
+                    pawns.splice(index, 1); //remove the pawn from the list.
+                    ArrayPlayers[i].Pawn = pawns; // add the new list not the info
+                    ArrayPlayers[i].Nest += 1; // adds a score to the Nest
+
+                    rolls += 1; // counter so the player can only roll max 3 times;
+                    if (rolls === 3) break; 
+                    
+                    document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>'; // changeing the disply of the dice
+                    await waitForDieToBeRolled('dice'); // waiting for the dice to bee clicked
+                    dice = rollDice();
+                    clickedPawnId = await waitForSelectecPawn(pawns);
+                    possible = movePawns(pathWay, pawns, clickedPawnId, dice, ArrayPlayers);
+
+                } else if (possible === 'true'){ 
+                    if (rolls === 3) break; 
+                    rolls += 1; // counter so the player can only roll max 3 times;
+                    document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>'; // changeing the disply of the dice
+                    await waitForDieToBeRolled('dice'); // waiting for the dice to bee clicked
+                    dice = rollDice();
+                    clickedPawnId = await waitForSelectecPawn(pawnslist);
+                    possible = movePawns(pathWay, pawns, clickedPawnId, dice, ArrayPlayers);
+                } else {
+                    if (allpawnsHome(pawns) === 'false'){// This will end the players turn if all the pawns are home 
                         break;
                     } else {
-                        alert('You can only move this piece as you roll a 1 or a 6');
                         clickedPawnId = await waitForSelectecPawn(pawnslist);
+                        possible = movePawns(pathWay, pawns, clickedPawnId, dice, ArrayPlayers);
                     }
                 }
-
             }
+
+            if (possible === 'nest'){
+                let index = removepawned(clickedPawnId, pawns);
+                pawns.splice(index, 1); //remove the pawn fron the list.
+                ArrayPlayers[i].Pawn = pawns;
+                ArrayPlayers[i].Nest += 1;
+
+            } else if (possible === 'false') {
+                let allpawnsathome = allpawnsHome(pawns);
+                if (allpawnsathome === false){// This will and the players turn if all the pawns are home 
+                    alert('You can only move this piece as you roll a 1 or a 6\nSince all your pawns are in the Home, this is the end of your turn');
+                    break;
+                } else {
+                    alert('You can only move this piece as you roll a 1 or a 6\nPlease select a pawn that isn`t in the home.');
+                    clickedPawnId = await waitForSelectecPawn(pawnslist);
+                    possible = movePawns(pathWay, pawns, clickedPawnId, dice, ArrayPlayers);
+                }
+            }
+
             activeplayer.style.removeProperty('border');
             document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>';
+            nest = ArrayPlayers[i].Nest;
+
+            if (nest === 4) {alert(`${ArrayPlayers[i].Name} is the winner!`)};
             
-            if (nest === 4){
-                alert(`${ArrayPlayers[i].Name} is the winner!`);
-            }
         
         }
     }

@@ -184,7 +184,8 @@ async function rounds(ArrayPlayers1){
                     document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>'; // changeing the disply of the dice
                     await waitForDieToBeRolled('dice'); // waiting for the dice to bee clicked
                     dice = rollDice();
-                    clickedPawnId = await waitForSelectecPawn(pawns);
+                    pawnslist = pawnList(pawns)
+                    clickedPawnId = await waitForSelectecPawn(pawnslist);
                     possible = movePawns(pathWay, pawns, clickedPawnId, dice, ArrayPlayers);
 
                 } else if (possible === 'true'){ 

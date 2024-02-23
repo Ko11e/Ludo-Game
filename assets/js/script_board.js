@@ -191,6 +191,7 @@ async function rounds(ArrayPlayers1){
                 } else if (possible === 'true'){ 
                     if (rolls === 3) break; 
                     rolls += 1; // counter so the player can only roll max 3 times;
+                    
                     document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>'; // changeing the disply of the dice
                     await waitForDieToBeRolled('dice'); // waiting for the dice to bee clicked
                     dice = rollDice();
@@ -216,7 +217,6 @@ async function rounds(ArrayPlayers1){
                 let allpawnsathome = allpawnsHome(pawns);
                 if (allpawnsathome === false){// This will and the players turn if all the pawns are home 
                     alert('You can only move this piece as you roll a 1 or a 6\nSince all your pawns are in the Home, this is the end of your turn');
-                    break;
                 } else {
                     alert('You can only move this piece as you roll a 1 or a 6\nPlease select a pawn that isn`t in the home.');
                     clickedPawnId = await waitForSelectecPawn(pawnslist);
@@ -227,6 +227,7 @@ async function rounds(ArrayPlayers1){
             activeplayer.style.removeProperty('border');
             document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>';
             nest = ArrayPlayers[i].Nest;
+            console.log(nest)
 
             if (nest === 4) {alert(`${ArrayPlayers[i].Name} is the winner!`)};
             

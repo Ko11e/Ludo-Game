@@ -177,7 +177,10 @@ async function rounds(ArrayPlayers1){
                     pawns.splice(index, 1); //remove the pawn from the list.
                     ArrayPlayers[i].Pawn = pawns; // add the new list not the info
                     ArrayPlayers[i].Nest += 1; // adds a score to the Nest
-
+                    if (ArrayPlayers[i].Nest === 4){ 
+                        possible = 'true'; // so the code start at line 230 and not 213.
+                        break;
+                    }
                     rolls += 1; // counter so the player can only roll max 3 times;
                     if (rolls === 3) break; 
                     
@@ -191,7 +194,7 @@ async function rounds(ArrayPlayers1){
                 } else if (possible === 'true'){ 
                     if (rolls === 3) break; 
                     rolls += 1; // counter so the player can only roll max 3 times;
-                    
+
                     document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>'; // changeing the disply of the dice
                     await waitForDieToBeRolled('dice'); // waiting for the dice to bee clicked
                     dice = rollDice();

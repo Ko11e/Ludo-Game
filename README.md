@@ -66,12 +66,12 @@ The start page of the game allows the user to choose the number of players, whet
 The website functioned as intended and did not display any error messages.
 
 #### Name entered
-When entering the name in the input textboxes and clicking on "Start the game the names should follow woth to the boargame page. If a namn isn't entered Player and the number of the player i enter as default. It was tested for two players where all boxes was entered and where some, no boxes was filled.
+When entering the name in the input textboxes and clicking on "Start the game" the names should follow woth to the boargame page. If a namn isn't entered Player and the number of the player i enter as default. It was tested for two players where all boxes was entered and where some, no boxes was filled.
 ###### What occur
 The website functioned as intended and did not display any error messages. However if the user user eneter a space that will be the entered name.
 
 #### Game Rules
-
+Testing the preformes on the model that should apear when you click on "Rules for Ludo"
 
 #### Footer
 The Font Awesome icons in the footer were tested to ensure that they each open the home/start page and have a hover effect with a black border around the icon. 

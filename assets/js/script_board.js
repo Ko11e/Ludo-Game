@@ -210,20 +210,24 @@ async function rounds(ArrayPlayers1){
                 }
             }
 
-            if (possible === 'nest'){
-                let index = removepawned(clickedPawnId, pawns);
-                pawns.splice(index, 1); //remove the pawn fron the list.
-                ArrayPlayers[i].Pawn = pawns;
-                ArrayPlayers[i].Nest += 1;
+            while (possible === 'false' || possible === 'nest'){
+                if (possible === 'nest'){
+                    let index = removepawned(clickedPawnId, pawns);
+                    pawns.splice(index, 1); //remove the pawn fron the list.
+                    ArrayPlayers[i].Pawn = pawns;
+                    ArrayPlayers[i].Nest += 1;
+                    possible = 'true';
 
-            } else if (possible === 'false') {
-                let allpawnsathome = allpawnsHome(pawns);
-                if (allpawnsathome === false){// This will and the players turn if all the pawns are home 
-                    alert('You can only move this piece as you roll a 1 or a 6\nSince all your pawns are in the Home, this is the end of your turn');
-                } else {
-                    alert('You can only move this piece as you roll a 1 or a 6\nPlease select a pawn that isn`t in the home.');
-                    clickedPawnId = await waitForSelectecPawn(pawnslist);
-                    possible = movePawns(pathWay, pawns, clickedPawnId, dice, ArrayPlayers);
+                } else if (possible === 'false') {
+                    let allpawnsathome = allpawnsHome(pawns);
+                    if (allpawnsathome === false){// This will and the players turn if all the pawns are home 
+                        alert('You can only move this piece as you roll a 1 or a 6\nSince all your pawns are in the Home, this is the end of your turn');
+                        break;
+                    } else {
+                        alert('You can only move this piece as you roll a 1 or a 6\nPlease select a pawn that isn`t in the home.');
+                        clickedPawnId = await waitForSelectecPawn(pawnslist);
+                        possible = movePawns(pathWay, pawns, clickedPawnId, dice, ArrayPlayers);
+                    }
                 }
             }
 

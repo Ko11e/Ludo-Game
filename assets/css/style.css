@@ -263,19 +263,21 @@ img {
 #pawns {
     display: flex;
     flex-wrap: wrap;
-    width: 60%;
+    width: 75%;
+    justify-content: center;
 }
 
 #pawns>div {
     display: flex;
     flex-basis: 45%;
-    flex-grow: 1;
+    flex-grow: 0.45;
     align-items: center;
     justify-content: space-evenly;
 }
 
 #diceDisplay {
     display: flex;
+    flex-direction: column;
     width: 100%;
     justify-content: space-evenly;
     align-items: center;
@@ -306,6 +308,7 @@ footer {
         margin: 3% 0;
         flex-direction: row;
         justify-content: space-around;
+        align-items: center;
         width: 98%;
     }
 
@@ -314,9 +317,13 @@ footer {
         max-width: none;
     }
 
+    #pawns {
+        width: 80%;
+    }
+
     #pawns>div {
         flex-basis: 70%;
-        margin: 10% 0;
+        margin: 5% 0;
     }
 
     #players {
@@ -339,6 +346,10 @@ footer {
     .row {
         justify-content: center;
         padding: 0 50px;
+    }
+    
+    #pawns {
+        width: 60%;
     }
 
 }

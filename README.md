@@ -71,12 +71,12 @@ When entering the name in the input textboxes and clicking on "Start the game" t
 The website functioned as intended and did not display any error messages. However if the user user eneter a space that will be the entered name.
 
 #### Game Rules
-Testing the preformes on the model that should apear when you click on "Rules for Ludo"
+Testing the preformes on the model that should apear when you click on "Rules for Ludo". When the user click on the button "Rules to Ludo" a model apears in the medel of the screen.
 
 #### Footer
 The Font Awesome icons in the footer were tested to ensure that they each open the home/start page and have a hover effect with a black border around the icon. 
 ###### What occur
-As expected, each item goes back to the home page when clicked, and the correct hover border appears when the user hovers over the icon.
+As expected, each item goes back to the home page when clicked, and the correct hover border apears when the user hovers over the icon.
 
 ### Boardgame page
 

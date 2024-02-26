@@ -1,10 +1,11 @@
 # Ludo Game
-Ludo is a boardgame the you now with this websitw can play online with you friends.
+Ludo is a board game that most people have played as a child. On this website you can now play Ludo on your phone or computer. As a user, you also get the choice to be 2-4 players. The aim of the game is to move your pieces from your home to the nest that is in the centre of the board. To get to the centre of the board, players must move around the entire board without being knocked back to their home by their opponents. View the live site [here](https://ko11e.github.io/Ludo-Game/).
+
+PIC MOCKUP
 
 ## Features 
 ### Existing Features
 The site is responsive to all screens and can also be played on a mobile.
-
 #### Home page/Start page
 
 
@@ -176,6 +177,7 @@ Testing was focused to ensure the following criteria were met:
  
 
 ## Credits 
+Text for the rules are taken from https://www.ymimports.com/pages/how-to-play-ludo
  
 
 ### Content 

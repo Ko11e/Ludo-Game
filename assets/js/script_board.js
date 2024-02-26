@@ -1,7 +1,5 @@
 main();
 
-
-
 //Functions
 function main(){
     let NameofPlayers = getPlayerNameFromURL();
@@ -193,7 +191,7 @@ async function rounds(ArrayPlayers1){
                     document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>'; // changing the display of the dice
                     await waitForDieToBeRolled('dice'); // waiting for the dice to be clicked
                     dice = rollDice();
-                    pawnslist = pawnList(pawns)
+                    pawnslist = pawnList(pawns);
                     clickedPawnId = await waitForSelectecPawn(pawnslist);
                     possible = movePawns(pathWay, pawns, clickedPawnId, dice, ArrayPlayers);
 
@@ -244,7 +242,7 @@ async function rounds(ArrayPlayers1){
             if (nest === 4) {
                 let winner = document.getElementById(`playerText${i+1}`);
                 winner.innerHTML += `<i class="fa-solid fa-trophy"></i>`;
-                
+
                 alert(`${ArrayPlayers[i].Name} is the winner!`);
             }
             
@@ -450,16 +448,16 @@ var span = document.getElementsByClassName("close")[0];
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
   modal.style.display = "block";
-}
+};
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
-}
+};
 
 // 
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
-}
+};

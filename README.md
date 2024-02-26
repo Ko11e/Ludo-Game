@@ -29,7 +29,6 @@ The site is responsive to all screens and can also be played on a mobile.
 - When hoovering over the pawn it displays the squer it will land on
 
 ## Design
-
 ### Wireframe
 #### Desktop
 ##### Homepage
@@ -153,7 +152,7 @@ when a user enters all its pawns into the center of the board an alert message a
 ###### What occur
 The website functioned as intended and did not display any error messages.
 
-#### Footer
+##### Footer
 The Font Awesome icons in the footer were tested to ensure that they open the home/start page or display the rules for 
 Ludo as a model. The icon also has a hover effect with a black border around the icon. This has been tested at different times as in the beginning, the end, and the middle of the game. The home icon should return the user to the index.html and this will end the game. The clipboard displays the rules 
 ###### What occur
@@ -175,11 +174,23 @@ Testing was focused to ensure the following criteria were met:
 - WCAG 2.1 Coding best practices being followed
 
 ### Validator Testing 
+- HTML <br>
+No errors were returned when passing through the official W3C validator, se result below.
+  - Home/Start page 
+  ![Resulte W3C validation home page](assets/readme/Validation-W3C-homepage.png)
+  - Boardgame page 
+  ![Resualte W3C validation boardgame page](assets/readme/Validation-W3C-boardgame.png)
+  
+- CSS <br>
+No errors were found when passing through the official [(Jigsaw) validator]
+  - CSS style file result 
+  ![CCS-test](assets/readme/CSStest.png)
 
-- HTML
-  - No errors were returned when passing through the official [W3C validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fcode-institute-org.github.io%2Flove-running-2.0%2Findex.html)
-- CSS
-  - No errors were found when passing through the official [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fvalidator.w3.org%2Fnu%2F%3Fdoc%3Dhttps%253A%252F%252Fcode-institute-org.github.io%252Flove-running-2.0%252Findex.html&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en#css)
+- [JSHint Validation](https://jshint.com/) 
+  - script.js
+  ![Result-for-script](assets/readme/Validation-JSHint-script.webp)
+  - script_board.js
+  ![Result-for-script_board](assets/readme/Validation-JSHint-board.webp)
 
 ### Fixed Bugs
 - when rolling a 6 the second roll wantn´t a 6 the player was able to select a pawn but it didnt move.

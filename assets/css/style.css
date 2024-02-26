@@ -160,6 +160,10 @@ input[type=text] {
     width: 100%;
 }
 
+#h2board {
+    display: none;
+}
+
 #theBoard {
     width: 100%;
     max-width: 375px;

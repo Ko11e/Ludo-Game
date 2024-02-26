@@ -1,12 +1,13 @@
 main();
 
+
+
 //Functions
 function main(){
     let NameofPlayers = getPlayerNameFromURL();
     const Playerstat = createBoard (NameofPlayers);
     rounds(Playerstat);
 
-    
 }
 
 /**
@@ -124,7 +125,7 @@ async function firstTurn(ArrayPlayers) {
         while (rolls !== 3){ // stop the turn if the players have rolled the die 3 times
             await waitForDieToBeRolled('dice');
             let dice = rollDice();
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            await new Promise(resolve => setTimeout(resolve, 1500));
             document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>';
 
             if (dice === 1){   
@@ -151,24 +152,29 @@ async function firstTurn(ArrayPlayers) {
     return ArrayPlayers;
 }
 
+
+/**
+ * starts the game and interate oven the players until a player won.
+ * @param {*} ArrayPlayers1 
+ */
 async function rounds(ArrayPlayers1){
     let ArrayPlayers = await firstTurn (ArrayPlayers1);
     
     let nest = 0;
 
-    while (nest !==4){
+    while (nest !==4){ // Continues as long as no player has gotten all of their pieces to the center of the board
         for (let i=0; i<ArrayPlayers.length; i++){
             let activeplayer = document.getElementsByClassName('activemarker')[i];
-            activeplayer.style.border = '2px solid black';
+            activeplayer.style.border = '2px solid black'; // creats a black box around the activeplayer
 
             let pathWay = ArrayPlayers[i].Pathway;
             let pawns = ArrayPlayers[i].Pawn;
-            let rolls = 1;
+            let rolls = 1; // the number of rolls that have been made
 
-            await waitForDieToBeRolled('dice');
+            await waitForDieToBeRolled('dice'); //waits for the dice to be clicked
             let dice = rollDice();
             let pawnslist = pawnList(pawns); // Creates a list of a the remaining pawns in the game.
-            let clickedPawnId = await waitForSelectecPawn(pawnslist);
+            let clickedPawnId = await waitForSelectecPawn(pawnslist); //waits for a pawn to be selected
             let possible = movePawns(pathWay, pawns, clickedPawnId, dice, ArrayPlayers);
 
             while (dice === 6){ 
@@ -184,8 +190,8 @@ async function rounds(ArrayPlayers1){
                     rolls += 1; // counter so the player can only roll max 3 times;
                     if (rolls === 3) break; 
                     
-                    document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>'; // changeing the disply of the dice
-                    await waitForDieToBeRolled('dice'); // waiting for the dice to bee clicked
+                    document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>'; // changing the display of the dice
+                    await waitForDieToBeRolled('dice'); // waiting for the dice to be clicked
                     dice = rollDice();
                     pawnslist = pawnList(pawns)
                     clickedPawnId = await waitForSelectecPawn(pawnslist);
@@ -195,8 +201,8 @@ async function rounds(ArrayPlayers1){
                     if (rolls === 3) break; 
                     rolls += 1; // counter so the player can only roll max 3 times;
 
-                    document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>'; // changeing the disply of the dice
-                    await waitForDieToBeRolled('dice'); // waiting for the dice to bee clicked
+                    document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>'; // changing the disply of the dice
+                    await waitForDieToBeRolled('dice'); // waiting for the dice to be clicked
                     dice = rollDice();
                     clickedPawnId = await waitForSelectecPawn(pawnslist);
                     possible = movePawns(pathWay, pawns, clickedPawnId, dice, ArrayPlayers);
@@ -231,12 +237,16 @@ async function rounds(ArrayPlayers1){
                 }
             }
 
-            activeplayer.style.removeProperty('border');
+            activeplayer.style.removeProperty('border'); // removes the box around the palyer
             document.getElementById('dice').innerHTML = '<i class="fa-solid fa-dice"></i>';
             nest = ArrayPlayers[i].Nest;
-            console.log(nest)
 
-            if (nest === 4) {alert(`${ArrayPlayers[i].Name} is the winner!`)};
+            if (nest === 4) {
+                let winner = document.getElementById(`playerText${i+1}`);
+                winner.innerHTML += `<i class="fa-solid fa-trophy"></i>`;
+                
+                alert(`${ArrayPlayers[i].Name} is the winner!`);
+            }
             
         
         }
@@ -244,6 +254,10 @@ async function rounds(ArrayPlayers1){
 
 }
 
+/**
+ * Generate a random number between 1 and 6 and change the display icon on the site.
+ * @returns a number between 1 and 6
+ */
 function rollDice() {
    let number = Math.floor(Math.random() *6);
    let dicedisplay = ['<i class="fa-solid fa-dice-one"></i>', '<i class="fa-solid fa-dice-two"></i>', '<i class="fa-solid fa-dice-three"></i>',
@@ -252,6 +266,15 @@ function rollDice() {
    return number+1;
 }
 
+/**
+ * Moves the selected pawn on the field
+ * @param {list} pathWay 
+ * @param {list} pawns 
+ * @param {number} PawnId 
+ * @param {number} dice 
+ * @param {object} ArrayPlayers 
+ * @returns a string with the vaule, true false nest
+ */
 function movePawns(pathWay, pawns, PawnId, dice,ArrayPlayers) {
     let indexed = findpawnindex(pathWay,pawns,PawnId);
     let pawnindex = indexed[0];
@@ -290,6 +313,11 @@ function movePawns(pathWay, pawns, PawnId, dice,ArrayPlayers) {
 
 }
 
+/**
+ * Waiting for the die to be clicked and stopes the code until the die is clicked 
+ * @param {*} ElementId 
+ * @returns 
+ */
 function waitForDieToBeRolled(ElementId) {
     return new Promise(resolve => {
         document.getElementById(ElementId).addEventListener("click", () => {
@@ -298,6 +326,11 @@ function waitForDieToBeRolled(ElementId) {
     });
 }
 
+/**
+ * waiting for a pawn to be selected/clicked on. Stopes the code until a pawn is selected
+ * @param {} buttonIds 
+ * @returns 
+ */
 function waitForSelectecPawn(buttonIds) {
     return new Promise(resolve => {
         buttonIds.forEach(buttonId => {
@@ -308,6 +341,12 @@ function waitForSelectecPawn(buttonIds) {
     });
 }
 
+/**
+ * Find the index of the pawn that have entered the center of the field
+ * @param {*} clickedPawnId 
+ * @param {*} pawns 
+ * @returns a number (int)
+ */
 function removepawned(clickedPawnId, pawns) {
     for (let i=0; i< pawns.length; ++i){
         let index = pawns[i].indexOf(clickedPawnId);
@@ -317,6 +356,11 @@ function removepawned(clickedPawnId, pawns) {
     }
 }
 
+/**
+ * takes the first element in the lists that are inside a other list and create an new list with this values.
+ * @param {*} pawns 
+ * @returns a list with the remaining pawn on the field
+ */
 function pawnList(pawns){
     let list = [];
     for (let i=0; i < pawns.length; i++){
@@ -325,7 +369,7 @@ function pawnList(pawns){
     return list;
 }
 /**
- * 
+ * Finds the index of the selected pawn and where on the field the pawn is locaded and the index of that position.
  * @param {*} pathWay 
  * @param {*} pawns 
  * @param {*} pawnid 
@@ -346,6 +390,11 @@ function findpawnindex(pathWay,pawns,pawnid){
     }
 }
 
+/**
+ * Checks if all game pieces are in the home or if there are any game pieces on the field.
+ * @param {*} pawns 
+ * @returns false if all the pieces are in the home and true if if they are game pieces on the field.
+ */
 function allpawnsHome(pawns) {
     let pawnsHome = 0;
     for (let i=0; i < pawns.length; i++){
@@ -354,13 +403,18 @@ function allpawnsHome(pawns) {
             pawnsHome += 1;
         }
     }
-    if (pawnsHome === 4){
+    if (pawnsHome === pawns.length){
         return false;
     } else {
         return true;
     }      
 }
 
+/**
+ * Checks if the square if occupied and if it is the pawn is send back to its homebase.
+ * @param {*} stop 
+ * @param {*} ArrayPlayers 
+ */
 function possiblePush(stop, ArrayPlayers) {
     if (stop.hasChildNodes() === true) {
         let pushedPiece = stop.firstChild.id;

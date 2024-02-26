@@ -101,7 +101,7 @@ The website functioned as intended and did not display any error messages or cra
 ##### Movment after the first round and a corret movment
 After the die have been rolled the user are able to select the pawn that it what to move by clicking on the pawn on the board. When a pawn is selected the pawn will move the number of squers that are displayed on the die. The user should not be able to select its opponent's pawn. To test this preformens a pawn on the field that is threi own have been selected and tryed to select the opponents pawn as well.
 ###### What occur
-The website functioned as intended and the pawn moved the number that was displayed on the die. When a opponents pawn was selected nothing happen which has expected. The website did not display any error messages or crashed.
+The website functioned as intended and the selected pawn moved the number that was displayed on the die. When a opponents pawn was selected nothing happen which has expected. The website did not display any error messages or crashed.
 
 ##### Movment when a pawn is at home is selected
 If the dice does show a one or a six the user are not able to move a pawn that are at the home. If a pawn is selected an alert message apear saying that the user are not able to selcet this pawn or any pawn that are in the home and is referred to select a pawn on the field. This alert messange will apear everytime you select a pawn in the home if you have pawns on the field. This was tested by repetetly clicking on a pawn that was in the home eventhough a pawn was on the field. 
@@ -117,6 +117,26 @@ The website functioned as intended and did not display any error messages.
 When a users pawn lands on the squer that is already occupied by opponets pawn is send back the oppponents pawn to their homebase. To test this an number of test games have been made with two, three and four players. When a pawn is push it should apear on its homebaseplate as in the picture below.
 ###### What occur
 The website functioned as intended and did not display any error messages.
+
+##### Activplayer marker
+On the website is a marker indicating what players turn it is. Everytime a players turn ends the marker is moved to the nest player. On the end of the last players turn the marker is moved back to the first player. The preformens of this have been tested by playing test games with two, three and four players.
+###### What occur
+The website functioned as intended and did not display any error messages.
+
+##### Pawn enters nest (Center of the board)
+When a pawn enters the center of the field/nest the pawn disapear from the field. In the code the pawn is also deleted from the pawns list and one is added til the value nest in the list. The preformens of this have been tested by playing test games with two, three and four players. Under the testgames the console logs the value of nest and the pawnslist.
+###### What occur
+The website functioned as intended and did not display any error messages.
+
+##### Winner
+when a user enters all its pawn to the center of the board an alert message apears saying that they are the winner of the game and a trophy icon apear next to the winner. After a user have won the rest of the player have one more turn. If its not the last player that wins, this is a bug that have not been fixed. to test this test games a have been played to see this funtion.
+###### What occur
+The website functioned as intended and did not display any error messages.
+
+#### Footer
+The Font Awesome icons in the footer were tested to ensure that they other open the home/start page or displays the rules for ludo as a model. The icon also have a hover effect with a black border around the icon. This have been tested in diffrent times as in the begining, the end and the middel of the game. The home icon should return the user to the index.html and this will end the game. The clipboard displays the rules 
+###### What occur
+As expected, each item goes back to the home page when clicked, and the correct hover border apears when the user hovers over the icon.
 
 
 ### Accessibility
@@ -148,9 +168,8 @@ Testing was focused to ensure the following criteria were met:
 - When a player last pawn enter the nest on a 6 the cod got stuck on the next line.
 
 ### Unfixed Bugs
-- When a player have all the pawn in the home the user must click on a pawn in the home again after the alert for the game to continute. This only happen when the user have 3 pawns or less on the board.
 - The user are able to push there own pawn of the field and back to the homebase.
-- If the fist player is the winner the rest of the players still have one more turn.
+- If any palyer but the last player is the winner the rest of the players still have one more turn. But if the winner is the last player the game ends.
 
 
 ## Deployment

@@ -61,83 +61,83 @@ Used balsamiq to create the wireframes.
 
 ## Testing
 ### Test
-In the section the tests that have occur will be explained. The first part explains what is expected to occur and how the test has been performed. As the other part discribe what happpens under the test. 
+In this section, the tests that have occurred will be explained. The first part explains what is expected to occur and how the test has been performed. The other part describes what happens under the test. 
 #### Start page
-##### Select number of players
+##### Select the number of players
 The start page of the game allows the user to choose the number of players, whether it's two, three, or four. Once the number of players is selected, the buttons should disappear and the corresponding number of input text-boxes should appear. Additionally, a new button should appear that signals the start of the game. This was tested by clicking on the three different buttons and seeing the response.
 ###### What occur
 The website functioned as intended and did not display any error messages.
 
 ##### Name entered
-When entering the name in the input textboxes and clicking on "Start the game" the names should follow woth to the boargame page. If a namn isn't entered Player and the number of the player i enter as default. It was tested for two players where all boxes was entered and where some, no boxes was filled.
+When entering the name in the input text-boxes and clicking on "Start the game" the names should follow with to the boargame page. If a name isn't entered Player and the number of the player are entered as default. It was tested for two, three, and four players where all boxes were entered, where some and no boxes were filled.
 ###### What occur
-The website functioned as intended and did not display any error messages. However, if the user user eneter a space that will be the entered name.
+The website functioned as intended and did not display any error messages. However, if the user enters a space that will be the entered name.
 
 ##### Game Rules
-Testing the preformes on the model that should apear when you click on "Rules for Ludo". When the user click on the button "Rules to Ludo" a model apears in the medel of the screen. This have been tested in diffrent times both when buttons for the number players are displayed and when the input-boxes are displayed. 
+Testing the performers on the model that should appear when you click on "Rules for Ludo". When the user clicks on the button "Rules to Ludo" a model appears in the middle of the screen. This has been tested at different times both when buttons for the number of players are displayed and when the input boxes are displayed. 
 ###### What occur
 The website functioned as intended and did not display any error messages.
 
 #### Footer
-The Font Awesome icons in the footer were tested to ensure that they each open the home/start page and have a hover effect with a black border around the icon. This have been tested in diffrent times both when buttons for the number players are displayed and when the input-boxes are displayed. 
+The Font Awesome icons in the footer were tested to ensure that they each open the home/start page and have a hover effect with a black border around the icon. This has been tested at different times both when buttons for the number of players are displayed and when the input boxes are displayed. 
 ###### What occur
-As expected, each item goes back to the home page when clicked, and the correct hover border apears when the user hovers over the icon.
+As expected, each item goes back to the home page when clicked, and the correct hover border appears when the user hovers over the icon.
 
 #### Boardgame page
 ##### Rolling dice
-To roll the die the user/users click on the dice icon that are placed underneth the text "Roll dice". When clicking on the dice a new dice will apear that chooses the number of steps the pawn can move. After a pawn has been selected and moved the dice will display the same icon as in the begining. The dice should not change before a pawn have been selected exept on the first round. This have been tested by clicking on the dice symbol in the begining of the users turn and after the die display the number of movment for the pawn.
+To roll the die the user/users click on the dice icon that is placed under the text "Roll dice". When clicking on the dice a new dice will appear that chooses the number of steps the pawn can move. After a pawn has been selected and moved the dice will display the same icon as in the beginning. The dice should not change before a pawn has been selected except in the first round. This has been tested by clicking on the dice symbol at the beginning of the user's turn and after the die display the number of movements for the pawn.
 
-##### Rolling dice on the firt round
-On the first round all players have the oppertunety to roll the die three times to get a one or a six. When the dice is rolled the number are displayed for 2 secondes and then change back to the icon that was in the begining.
+##### Rolling dice in the first round
+In the first round, all players have the opportunity to roll the die three times to get a one or a six. When the dice are rolled the numbers are displayed for 1.5 seconds and then change back to the icon that was in the beginning.
 
 ###### What occur
-For both functions the website functioned as expexted and did not display any error message.
+For both functions, the website functioned as expected and did not display any error message.
 
-##### Movment on the first round
-On the first round all players have the oppertunety to roll the die three times to get a one or a six. If a player receive a one or a six on the first or the second roll their turn is over and next player will start their turn. When a player gets a one or a six the code automaticlly moves the pawn with the number 1 the responing steps. The performents of this function have been tested with two, three and four players.
+##### Movement on the first round
+In the first round, all players have the opportunity to roll the die three times to get a one or a six. If a player receives a one or a six on the first or the second roll their turn is over and the next player will start their turn. When a player gets one or a six the code automatically moves the pawn with the number 1 the number shown on the die. The performance of this function has been tested with two, three, and four players.
 ###### What occur
 The website functioned as intended and did not display any error messages or crashed.
 
-##### Movment after the first round and a corret movment
-After the die have been rolled the user are able to select the pawn that it what to move by clicking on the pawn on the board. When a pawn is selected the pawn will move the number of squers that are displayed on the die. The user should not be able to select its opponent's pawn. To test this preformens a pawn on the field that is threi own have been selected and tryed to select the opponents pawn as well.
+##### Movement after the first round and a correct movement
+After the die has been rolled the user can select the pawn that it what to move by clicking on the pawn on the board. When a pawn is selected the pawn will move the number of squares that are displayed on the die. The user should not be able to select its opponent's pawn. To test this performance a pawn on the field that is their own has been selected and tried to select the opponent's pawn as well.
 ###### What occur
-The website functioned as intended and the selected pawn moved the number that was displayed on the die. When a opponents pawn was selected nothing happen which has expected. The website did not display any error messages or crashed.
+The website functioned as intended and the selected pawn moved the number that was displayed on the die. When an opponent pawn was selected nothing happened which was expected. The website did not display any error messages or crashed.
 
-##### Movment when a pawn is at home is selected
-If the dice does show a one or a six the user are not able to move a pawn that are at the home. If a pawn is selected an alert message apear saying that the user are not able to selcet this pawn or any pawn that are in the home and is referred to select a pawn on the field. This alert messange will apear everytime you select a pawn in the home if you have pawns on the field. This was tested by repetetly clicking on a pawn that was in the home eventhough a pawn was on the field. 
+##### Movement when a pawn is at home is selected
+If the dice does show a one or a six the user is not able to move a pawn that is at the home. If a pawn is selected an alert message appears saying that the user is not able to select this pawn or any pawn that is in the home and is referred to select a pawn on the field. This alert message will appear every time you select a pawn in the home if you have pawns on the field. This was tested by repeatedly clicking on a pawn that was in the home even though a pawn was on the field. 
 ###### What occur
-As expected the alert message apeared everytime until the pawn on the field was selected. The website did not display any error messages or crashed.
+As expected the alert message appeared every time until the pawn on the field was selected. The website did not display any error messages or crashed.
 
-##### Movment when all pawns are at the homebase
-If the dice does show a one or a six the user are not able to move a pawn that are at the home. If all the pawns are at the homebase the user need to click one of the pawns and an alert message apear saying that this is the end of their turn because they are not able to move any of their pawns. After the user have click ok the turn is ended and the next player can roll the dice. This was tested by clicking on the pawns in the homebase and on the opponent's pawns. 
+##### Movement when all pawns are at the Homebase
+If the dice doesn't show a one or a six the user is not able to move a pawn that is at the home. If all the pawns are at the home base the user needs to click one of the pawns and an alert message appears saying that this is the end of their turn because they are not able to move any of their pawns. After the user has clicked ok the turn is ended and the next player can roll the dice. This was tested by clicking on the pawns in the home base and on the opponent's pawns. When the user clicks on the opponent's pawn no alert message should appear.
 ###### What occur
 The website functioned as intended and did not display any error messages.
 
 ##### Push an opponent pawn
-When a users pawn lands on the squer that is already occupied by opponets pawn is send back the oppponents pawn to their homebase. To test this an number of test games have been made with two, three and four players. When a pawn is push it should apear on its homebaseplate as in the picture below.
+When a user's pawn lands on the square that is already occupied by the opponent pawn is sent back to the opponent pawn to their home base. To test this several test games have been made with two, three, and four players. When a pawn is pushed it should appear on its homebaseplate as in the picture below.
 ###### What occur
 The website functioned as intended and did not display any error messages.
 
 ##### Activplayer marker
-On the website is a marker indicating what players turn it is. Everytime a players turn ends the marker is moved to the nest player. On the end of the last players turn the marker is moved back to the first player. The preformens of this have been tested by playing test games with two, three and four players.
+On the website is a marker indicating what player has its turn. Every time a player's turn ends the marker is moved to the next player. At the end of the last player's turn, the marker is moved back to the first player. The performances of this have been tested by playing test games with two, three, and four players.
 ###### What occur
 The website functioned as intended and did not display any error messages.
 
 ##### Pawn enters nest (Center of the board)
-When a pawn enters the center of the field/nest the pawn disapear from the field. In the code the pawn is also deleted from the pawns list and one is added til the value nest in the list. The preformens of this have been tested by playing test games with two, three and four players. Under the testgames the console logs the value of nest and the pawnslist.
+When a pawn enters the center of the field/nest the pawn disappears from the field. In the code, the pawn is also deleted from the pawns list and one is added til the value nests in the list. The performances of this have been tested by playing test games with two, three, and four players. Under the test games, the console logs the value of the nest and the pawnslist.
 ###### What occur
 The website functioned as intended and did not display any error messages.
 
 ##### Winner
-when a user enters all its pawn to the center of the board an alert message apears saying that they are the winner of the game and a trophy icon apear next to the winner. After a user have won the rest of the player have one more turn. If its not the last player that wins, this is a bug that have not been fixed. to test this test games a have been played to see this funtion.
+when a user enters all its pawns into the center of the board an alert message appears saying that they are the winner of the game and a trophy icon appears next to the winner. After a user has won the rest of the players have one more turn. If it's not the last player that wins, this is a bug that has not been fixed. To test this test games have been played to see this function.
 ###### What occur
 The website functioned as intended and did not display any error messages.
 
 #### Footer
-The Font Awesome icons in the footer were tested to ensure that they other open the home/start page or displays the rules for ludo as a model. The icon also have a hover effect with a black border around the icon. This have been tested in diffrent times as in the begining, the end and the middel of the game. The home icon should return the user to the index.html and this will end the game. The clipboard displays the rules 
+The Font Awesome icons in the footer were tested to ensure that they open the home/start page or display the rules for 
+Ludo as a model. The icon also has a hover effect with a black border around the icon. This has been tested at different times as in the beginning, the end, and the middle of the game. The home icon should return the user to the index.html and this will end the game. The clipboard displays the rules 
 ###### What occur
-As expected, each item goes back to the home page when clicked, and the correct hover border apears when the user hovers over the icon.
-
+As expected, each item goes back to the home page when clicked, and the correct hover border appears when the user hovers over the icon.
 
 ### Accessibility
 

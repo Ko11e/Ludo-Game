@@ -69,8 +69,6 @@ The source code is hosted on GitHub and deployed using Git Pages.
 During the development of the website, Git was utilized to commit and push code.
 - **Font Awesome** <br>
 Icons from https://fontawesome.com/ are used as Home and restart icons the footer.
-- **Covertio** <br>
-To convert some images from jpg or png to web format, we used [Convertio](https://convertio.co/jpg-webp/).
 - **Tinyjpg** <br>
 Used https://tinyjpg.com/ to compress the size of the images.
 - **[Favicon.io](https://favicon.io/favicon-converter/)** <br>
@@ -79,7 +77,7 @@ Favicon files were made at
 Used balsamiq to create the wireframes.
 
 ## Testing
-### Test
+### Manual Test
 In this section, the tests that have occurred will be explained. The first part explains what is expected to occur and how the test has been performed. The other part describes what happens under the test. 
 #### Start page
 ##### Select the number of players
@@ -174,23 +172,27 @@ Testing was focused to ensure the following criteria were met:
 - WCAG 2.1 Coding best practices being followed
 
 ### Validator Testing 
-- HTML <br>
+#### HTML 
 No errors were returned when passing through the official W3C validator, se result below.
-  - Home/Start page 
+- Home/Start page 
   ![Resulte W3C validation home page](assets/readme/Validation-W3C-homepage.png)
-  - Boardgame page 
+- Boardgame page 
   ![Resualte W3C validation boardgame page](assets/readme/Validation-W3C-boardgame.png)
   
-- CSS <br>
+#### CSS <br>
 No errors were found when passing through the official [(Jigsaw) validator]
   - CSS style file result 
   ![CCS-test](assets/readme/CSStest.png)
 
-- [JSHint Validation](https://jshint.com/) 
-  - script.js
+#### [JSHint Validation](https://jshint.com/) 
+##### script.js
   ![Result-for-script](assets/readme/Validation-JSHint-script.webp)
-  - script_board.js
+  
+##### script_board.js
   ![Result-for-script_board](assets/readme/Validation-JSHint-board.webp)
+
+### Lighthouse testing
+
 
 ### Fixed Bugs
 - when rolling a 6 the second roll wantn´t a 6 the player was able to select a pawn but it didnt move.
@@ -204,6 +206,15 @@ No errors were found when passing through the official [(Jigsaw) validator]
 
 
 ## Deployment
+The project was published on GitHub Pages by following these steps.
+  1. Log in to GitHub and locate the [Repository](https://github.com/Ko11e/Ludo-Game.git)
+  2. Click on "Settings", located at the end of the menu at the top of the page.
+  3. Click on "Page", located in the middle of the menu on the left side.
+  4. Under "Branch", click the drop-down called "None" and select "Main".
+  5. Click "Save" and refresh the page.
+  6. The link to the publish site will shown at the top of the page.
+
+The live link can be found [here](https://ko11e.github.io/Ludo-Game/) 
  
 
 ## Credits 

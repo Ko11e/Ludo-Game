@@ -31,6 +31,25 @@ The site is responsive to all screens and can also be played on a mobile.
 ## Design
 
 ### Wireframe
+#### Desktop
+##### Homepage
+<p>
+<img src="assets/readme/Wireframe-desktop-start1.png" title="Wireframe-desktop-indexfirst" width= 40%>
+<img src="assets/readme/Wireframe-desktop-start2.png" title="Wireframe-desktop-indexsecond" width= 52% >
+</p>
+
+##### Boardgame page
+![wireframe-desktop-boardgame](assets/readme/Wireframe-desktop-board.png)
+
+#### Mobile
+##### Homepage
+<p>
+<img src="assets/readme/Wireframe-mobil-start1.png" title="Wireframe-mobile-indexfirst" width= 46%>
+<img src="assets/readme/Wireframe-mobil-start2.png" title="Wireframe-mobile-indexsecond" width= 44% >
+</p>
+
+##### Boardgame page
+![wireframe-mobile-boardgame](assets/readme/Wireframe-mobil-board.png)
 
 ### Color/Images
 

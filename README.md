@@ -6,6 +6,10 @@ PIC MOCKUP
 ## Features 
 ### Existing Features
 The site is responsive to all screens and can also be played on a mobile.
+#### Favicon
+  - The website's favicon features four game pieces in red, green , yellow and blue since that are the main colors of the game.
+  - By adding a favicon , users can easily identify the tab among multiple tabs open.
+![Image-of-the-favicon](assets/readme/favicon.png)
 #### Home page/Start page
 
 
@@ -14,13 +18,8 @@ The site is responsive to all screens and can also be played on a mobile.
 
 #### Players
 
-#### Meetup Times section
 
 #### The Footer 
-
-##### Home page
-
-##### Board game
 
 ### Features Left to Implement
 - The number of Players the is choosen in the index page will change the dislpay of the gamebord. As it is now the pawn from the non selected player gets remove from the field but the field are the same.
@@ -51,7 +50,7 @@ The site is responsive to all screens and can also be played on a mobile.
 ![wireframe-mobile-boardgame](assets/readme/Wireframe-mobil-board.png)
 
 ### Color/Images
-
+ 
 
 ## Technologies
 
@@ -68,13 +67,15 @@ The source code is hosted on GitHub and deployed using Git Pages.
 - **Git** <br>
 During the development of the website, Git was utilized to commit and push code.
 - **Font Awesome** <br>
-Icons from https://fontawesome.com/ are used as Home and restart icons the footer.
+Icons from https://fontawesome.com/ are used as Home, restart and rulse icons in the footer.
 - **Tinyjpg** <br>
 Used https://tinyjpg.com/ to compress the size of the images.
 - **[Favicon.io](https://favicon.io/favicon-converter/)** <br>
-Favicon files were made at 
+Favicon files were made at favicon.io
 - **[balsamiq](https://balsamiq.com/wireframes/desktop/#)** <br>
 Used balsamiq to create the wireframes.
+- **[Photopea:](https://www.photopea.com/)** 
+This was used creat the favicon and the pawns for the game.
 
 ## Testing
 ### Manual Test
@@ -157,7 +158,6 @@ Ludo as a model. The icon also has a hover effect with a black border around the
 As expected, each item goes back to the home page when clicked, and the correct hover border appears when the user hovers over the icon.
 
 ### Accessibility
-
 [Wave Accessibility](https://wave.webaim.org/) tool was used throughout development and for final testing of the deployed website to check for any aid accessibility testing.
 
 Testing was focused to ensure the following criteria were met:
@@ -218,14 +218,21 @@ The live link can be found [here](https://ko11e.github.io/Ludo-Game/)
  
 
 ## Credits 
-Text for the rules are taken from https://www.ymimports.com/pages/how-to-play-ludo
- 
+- **Love math (Code Institute)**<br>
+The first function in the Love math is taken to the first function to the start page. However, the code has been modified to fit this project.
+
+- **[Atomic object](https://spin.atomicobject.com/css-responsive-square/)**<br>
+To make the board game field and have it responsive-without the squers being disformed. The code found at the atomic object was used.
+
+- **[Stockoverflow](https://stackoverflow.com/) and [W3schools](https://www.w3schools.com/)** <br>
+The bugs that appear under the project were solved using Stockoverflow and W3schools.
+
 
 ### Content 
-
+- The text for the rules is taken from the website [Yellow mountain imports](https://www.ymimports.com/).
 
 ### Media
- 
+ - The image for the background for the start page is taken from [Pexels](https://www.pexels.com/) 
 
 ### Acknowledgements 
-
+- My family always listens to all my ideas and gives my feedback.

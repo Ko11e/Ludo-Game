@@ -1,7 +1,7 @@
 # Ludo Game
 Ludo is a board game that most people have played as a child. On this website you can now play Ludo on your phone or computer. As a user, you also get the choice to be 2-4 players. The aim of the game is to move your pieces from your home to the nest that is in the centre of the board. To get to the centre of the board, players must move around the entire board without being knocked back to their home by their opponents. View the live site [here](https://ko11e.github.io/Ludo-Game/).
 
-PIC MOCKUP
+![Multi-mockup-of-the-website](assets/readme/mulit-mockup-ludo-readme.webp)
 
 ## Features 
 ### Existing Features
@@ -130,6 +130,7 @@ As expected the alert message appeared every time until the pawn on the field wa
 If the dice doesn't show a one or a six the user is not able to move a pawn that is at the home. If all the pawns are at the home base the user needs to click one of the pawns and an alert message appears saying that this is the end of their turn because they are not able to move any of their pawns. After the user has clicked ok the turn is ended and the next player can roll the dice. This was tested by clicking on the pawns in the home base and on the opponent's pawns. When the user clicks on the opponent's pawn no alert message should appear.
 ###### What occur
 The website functioned as intended and did not display any error messages.
+![Image of an alert message](assets/readme/Screenshot-alert1.webp)
 
 ##### Push an opponent pawn
 When a user's pawn lands on the square that is already occupied by the opponent pawn is sent back to the opponent pawn to their home base. To test this several test games have been made with two, three, and four players. When a pawn is pushed it should appear on its homebaseplate as in the picture below.
@@ -145,6 +146,7 @@ The website functioned as intended and did not display any error messages.
 When a pawn enters the center of the field/nest the pawn disappears from the field. In the code, the pawn is also deleted from the pawns list and one is added til the value nests in the list. The performances of this have been tested by playing test games with two, three, and four players. Under the test games, the console logs the value of the nest and the pawnslist.
 ###### What occur
 The website functioned as intended and did not display any error messages.
+![Image of a pawn push another pawn](assets/readme/push-a-pawn-screenshot.webp)
 
 ##### Winner
 when a user enters all its pawns into the center of the board an alert message appears saying that they are the winner of the game and a trophy icon appears next to the winner. After a user has won the rest of the players have one more turn. If it's not the last player that wins, this is a bug that has not been fixed. To test this test games have been played to see this function.

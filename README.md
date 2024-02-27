@@ -7,25 +7,51 @@ Ludo is a board game that most people have played as a child. On this website yo
 ### Existing Features
 The site is responsive to all screens and can also be played on a mobile.
 #### Favicon
-  - The website's favicon features four game pieces in red, green , yellow and blue since that are the main colors of the game.
-  - By adding a favicon , users can easily identify the tab among multiple tabs open.
+- The website's favicon features four game pieces in red, green , yellow and blue since that are the main colors of the game.
+- By adding a favicon , users can easily identify the tab among multiple tabs open.
 ![Image-of-the-favicon](assets/readme/favicon.png)
+
+#### The Footer
+In this section, one of the symbols changes when the user arrives at the board game page. This is so that the user can easily access the rules during the game. all the symbols have a hoover effect to clarify that the symbol is clickable.
+- This section allows the user to return to the home page or reset the number of players selected. 
+
+- The footer is also available on the board game page where the user can also find the rules of the game.
+
+PICTURE
 #### Home page/Start page
+- The main purpose of the home page is to allow the user to easily see what this website is about. 
 
+- There is also a short description of the game to create a curiosity to play the game.
 
-#### Board
+- The user can also read more about the rules by clicking "Rules to Ludo" which is displayed as a model.
 
+##### Select player
+- This section allows the user to specify how many players will be in the game. Each button has a hoover effect so use it to clarify that the button is clickable.
 
-#### Players
+- To give the user a more personalised feel, the user can enter their names before the game starts. 
 
+- Below the input box arena there is a green button that makes it clear that they can start the game by clicking the button.
 
-#### The Footer 
+#### Board page
+- This page has the same title as the home page so that the user can clearly see that they are still on the same website.
+##### The Gameboard
+- It is a hoover effect that makes it clear to the user which parts of the game board are clickable.
+
+##### Players
+- Here the user can easily see whose turn it is using the black box around the active player. 
+
+- The user can also see what colour the different players are as their names are written next to the game piece.
+
+- Below the players there is a text indicating that the user should click on the dice to see how many steps they can move. The symbol changes when the dice is rolled and changes back when the dice can be rolled again so that it is clear to the user when the dice can be rolled and when it is rolled.
+
+ 
 
 ### Features Left to Implement
 - The number of Players the is choosen in the index page will change the dislpay of the gamebord. As it is now the pawn from the non selected player gets remove from the field but the field are the same.
 - If not all the 4 players are selected the user can select if the remaining player sould be played bye the computer.
 - The user can click and drag the pawn instead of just clicking.
 - When hoovering over the pawn it displays the squer it will land on
+- When a player wins a model appear show the winner and asking if the user ant to play another game.
 
 ## Design
 ### Wireframe
@@ -50,7 +76,10 @@ The site is responsive to all screens and can also be played on a mobile.
 ![wireframe-mobile-boardgame](assets/readme/Wireframe-mobil-board.png)
 
 ### Color/Images
- 
+ The background on the home page is chosen so that the user can easily see what the game is. It is also designed to be clean, inviting and engaging.
+
+Since Ludo is a classic game and is known for the distinctive colours red green yellow and blue. I have made the choice not to have other colours. However, I have designed the game pieces so that they are clear even for users who are colour blind. In the picture below you can see their different designs.
+![Pawns design](assets/readme/Pawns.png)
 
 ## Technologies
 
@@ -130,7 +159,7 @@ As expected the alert message appeared every time until the pawn on the field wa
 If the dice doesn't show a one or a six the user is not able to move a pawn that is at the home. If all the pawns are at the home base the user needs to click one of the pawns and an alert message appears saying that this is the end of their turn because they are not able to move any of their pawns. After the user has clicked ok the turn is ended and the next player can roll the dice. This was tested by clicking on the pawns in the home base and on the opponent's pawns. When the user clicks on the opponent's pawn no alert message should appear.
 ###### What occur
 The website functioned as intended and did not display any error messages.
-![Image of an alert message](assets/readme/Screenshot-alert1.webp)
+![Image of an alert message](assets/readme/Screenshot-alert1.png)
 
 ##### Push an opponent pawn
 When a user's pawn lands on the square that is already occupied by the opponent pawn is sent back to the opponent pawn to their home base. To test this several test games have been made with two, three, and four players. When a pawn is pushed it should appear on its homebaseplate as in the picture below.
@@ -194,7 +223,16 @@ No errors were found when passing through the official [(Jigsaw) validator]
   ![Result-for-script_board](assets/readme/Validation-JSHint-board.webp)
 
 ### Lighthouse testing
-
+#### Starting page
+##### Desktop
+![Lighthousetest desktop startpage](assets/readme/lighthouse-start-desktop.png)
+##### Mobile
+![Lighthousetest mobile startpage](assets/readme/Lighthouse-start-mobile.png)
+#### Boardgame page
+##### Desktop
+![Lighthousetest desktop boardgamepage](assets/readme/lighthouse-board-desktop.png)
+##### Mobile
+![Lighthousetest mobile boardgamepage](assets/readme/lighthouse-board-mobile.png)
 
 ### Fixed Bugs
 - when rolling a 6 the second roll wantn´t a 6 the player was able to select a pawn but it didnt move.

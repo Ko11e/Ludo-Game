@@ -9,21 +9,23 @@ The site is responsive to all screens and can also be played on a mobile.
 #### Favicon
 - The website's favicon features four game pieces in red, green , yellow and blue since that are the main colors of the game.
 - By adding a favicon , users can easily identify the tab among multiple tabs open.
+
 ![Image-of-the-favicon](assets/readme/favicon.png)
 
 #### The Footer
 In this section, one of the symbols changes when the user arrives at the board game page. This is so that the user can easily access the rules during the game. all the symbols have a hoover effect to clarify that the symbol is clickable.
 - This section allows the user to return to the home page or reset the number of players selected. 
+![footer on the startpage](assets/readme/footer-start.png)
 
 - The footer is also available on the board game page where the user can also find the rules of the game.
-
-PICTURE
+![footer on boardgamepage](assets/readme/footer-boardgame.png)
 #### Home page/Start page
 - The main purpose of the home page is to allow the user to easily see what this website is about. 
 
 - There is also a short description of the game to create a curiosity to play the game.
 
 - The user can also read more about the rules by clicking "Rules to Ludo" which is displayed as a model.
+![image of startpage](assets/readme/startpage.png)
 
 ##### Select player
 - This section allows the user to specify how many players will be in the game. Each button has a hoover effect so use it to clarify that the button is clickable.
@@ -31,20 +33,23 @@ PICTURE
 - To give the user a more personalised feel, the user can enter their names before the game starts. 
 
 - Below the input box arena there is a green button that makes it clear that they can start the game by clicking the button.
+![picture of the process of selecting players and writing in names ](assets/readme/numberofplayer-to-entername.png)
 
 #### Board page
 - This page has the same title as the home page so that the user can clearly see that they are still on the same website.
 ##### The Gameboard
 - It is a hoover effect that makes it clear to the user which parts of the game board are clickable.
+![image of a selected pawn](assets/readme/Selected-player.png)
 
 ##### Players
 - Here the user can easily see whose turn it is using the black box around the active player. 
 
 - The user can also see what colour the different players are as their names are written next to the game piece.
+![image of the playersection](assets/readme/Screenshot-players.png)
 
 - Below the players there is a text indicating that the user should click on the dice to see how many steps they can move. The symbol changes when the dice is rolled and changes back when the dice can be rolled again so that it is clear to the user when the dice can be rolled and when it is rolled.
 
- 
+![dice when not rolled and rolled](assets/readme/dice.png)
 
 ### Features Left to Implement
 - The number of Players the is choosen in the index page will change the dislpay of the gamebord. As it is now the pawn from the non selected player gets remove from the field but the field are the same.
